@@ -1,19 +1,19 @@
 <template>
-  <section class="paper">
+  <section class="practice">
     <!--利用$router.back()返回上一级路由 -->
     <HeaderTop title="学海"></HeaderTop>
 
     <Swiper :lunbotuList="rotationImages" :isfull="true" class="swiper"></Swiper>
 
-    <div class="paper_list" v-for="(item) in kindList" :key="item.langId" @click="toKindDetail(item.langId)">
+    <div class="kind_list" v-for="(item) in kindList" :key="item.langId" @click="toKindDetail(item.langId)">
       <div class="item_border" >
-        <div class="paper_list_item" >
-          <span class="paper_title">
-            <span class="icon_paper">练习</span>
+        <div class="kind_list_item" >
+          <span class="kind_title">
+            <!-- <span class="icon_kind">{{queType}}</span> -->
             {{item.langName}}
           </span>
           <img
-            class="paper_img"
+            class="kind_img"
             :src="item.langImgSrc"
           />
         </div>
@@ -102,49 +102,33 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 @import '../../common/stylus/mixins.styl';
 
-.paper {
+.practice 
   padding-top: 45px;
   width: 100%;
-  background-color: #f5f5f5;
   margin-bottom 50px
-  .paper_list {
-    width: 100%;
+  background-color #f5f5f5
+  .kind_list 
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    .item_border{
+    .item_border
       border-bottom: 1px solid #CDC9C9;
-      .paper_list_item {
+      .kind_list_item 
         display: flex;
         flex-direction: column;
         width: 86%;
         margin: 0 auto;
         margin-bottom: 8px;
-        .paper_title {
+        .kind_title 
           height: 50px;
           line-height: 50px;
-          font-size: 16px;
-        }
-        .paper_participate {
-          height: 40px;
-          line-height: 40px;
-          font-size: 14px;
-          color: #ccc;
-          display: flex;
-          justify-content: space-between;
-        }
-        .paper_img {
-          height: 120px;
-        }
-        .icon_paper {
+          font-size: 16px;       
+        .kind_img 
+          height: 120px;        
+        .icon_kind 
           border: 1px solid #B22222;
           border-radius: 36%;
           padding: 3px 8px;
           color: #B22222;
           margin-right: 10px;
-        }
-      }
-    }
-  }
-}
+        
 </style>

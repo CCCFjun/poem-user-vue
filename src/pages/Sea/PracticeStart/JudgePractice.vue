@@ -12,6 +12,7 @@
       :key="'judge'+ item.judgeId"
       v-show="index == currentIndex"
     >
+      <mt-progress :value="timer" :bar-height="5"></mt-progress>
       <div class="content">
         <span class="que_content">{{index + 1}}.&nbsp;{{item.content}}</span>
         <img :src="item.pictureSrc" alt style="width: 100%" v-if="item.pictureSrc" />
@@ -55,7 +56,8 @@ export default {
       judgeAnswer: "",
       queNum: 0,
       kindId: this.$route.params.kindId,
-      ansShow: []
+      ansShow: [],
+      timer: 0
     };
   },
   computed: {
@@ -70,6 +72,7 @@ export default {
       spinnerType: "fading-circle"
     });
     this.getJudgeList(() => {
+      // this.countTime();
       this.$store.dispatch("initJudgeAnswersLength", this.queNum);
     });
   },
@@ -81,6 +84,17 @@ export default {
       "refreshCurrentIndex",
       "refreshJudgeAnswers"
     ]),
+    countTime(){
+      const vm = this
+      if(this.timer < 100){
+        setTimeout(()=>{
+          vm.timer += 1
+          vm.countTime()
+        },50)
+      }else{
+        // this.nextItem()
+      } 
+    },
     async getJudgeList(callback) {
       let result = await reqJudgePractice();
       if (result.statu == 0) {
@@ -195,7 +209,7 @@ export default {
     },
     judgeAnswer(val) {
       if (val != "") {
-        this.judgeChange();
+        this.judgeChange();      
       }
     },
   }

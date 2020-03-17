@@ -15,8 +15,9 @@
     <div class="paper_info">
       <img :src="paperInfo.paperImgSrc" class="paper_src" />
       <div class="paper_name">{{paperInfo.paperName}}</div>
-      <div class="paper_intro">{{paperInfo.paperAttention}}</div>
+      <div class="paper_intro">题型介绍：{{paperDetail}}</div>
     </div>
+
     <div class="my_score" v-if="currentPaperStatus == 1" @click="toExamAnswer(paperId)">
       <div class="profile_image">
         <img
@@ -31,6 +32,7 @@
         </p>
       </div>
     </div>
+
     <div class="score_list" v-if="scoreList == 1">
       <div class="score_list_item" v-for="(item,index) in scoreListInfo" :key="index">
         <div class="profile_image">
@@ -75,6 +77,7 @@ export default {
       userName: this.$store.state.userInfo.userName,
       paperId: this.$route.params.paperId,
       paperInfo: {},
+      paperDetail: '',
       queNumInfo: {},
       currentPaperStatus: 0,
       loading: false,
@@ -111,6 +114,15 @@ export default {
       if (result.statu === 0) {
         this.paperInfo = result.data.paperInfo;
         this.queNumInfo = result.data.queNumInfo;
+        if(this.paperInfo.paperType == 1){
+          this.paperDetail = `随机出题。总共${this.queNumInfo.totalNum}题，每道题时间为20秒。`
+        }else{
+          this.paperDetail = `固定出题。总共${this.queNumInfo.totalNum}题，每道题时间为20秒。`
+        }
+        if(this.queNumInfo.singleNum != 0){ this.paperDetail += `${this.queNumInfo.singleNum}道单选题，`}
+        if(this.queNumInfo.judgeNum != 0){ this.paperDetail += `${this.queNumInfo.judgeNum}道判断题，`}
+        if(this.queNumInfo.fillNum != 0){ this.paperDetail += `${this.queNumInfo.fillNum}道填写上下句，`}
+        if(this.queNumInfo.fillTwoNum != 0){ this.paperDetail += `${this.queNumInfo.fillTwoNum}道看图猜诗。`}
       } else {
         Toast({
           message: result.msg,
@@ -188,20 +200,14 @@ export default {
   .paper_info {
     width: 100%;
     border-bottom: 8px solid #EEE9E9;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 
     .paper_src {
       width: 100%;
       height: 120px;
     }
 
-    .paper_name {
-      color: #8B8989;
-      padding-left: 12px;
-      height: 30px;
-      line-height: 30px;
-    }
-
+    .paper_name
     .paper_intro {
       color: #8B8989;
       padding-left: 12px;

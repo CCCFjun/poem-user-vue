@@ -8,27 +8,13 @@ VueRouter.prototype.goBack = function () {
   window.history.go(-1)
 };
 // 引入路由组件文件夹下的组件
-// import Home from '../pages/Home/Home.vue'
-// import Wrong from '../pages/Wrong/Wrong.vue'
-// import Search from '../pages/Search/Search.vue'
-// import Profile from '../pages/Profile/Profile.vue'
 import Login from '@/pages/Login/Login.vue'
-import ProfileInfo from '@/pages/ProfileInfo/ProfileInfo.vue'
-import ProfileStuScore from '@/pages/ProfileStuScore/ProfileStuScore.vue'
-import ProfileWrongCollection from '@/pages/ProfileWrongCollection/ProfileWrongCollection.vue'
-import ProfileScoreDetail from '@/pages/ProfileScoreDetail/ProfileScoreDetail.vue'
-// import ProfilePswChange from '@/pages/ProfilePswChange/ProfilePswChange.vue'
-// import ProfileInfoChange from '@/pages/ProfileInfoChange/ProfileInfoChange.vue'
-// import ProfileFeedback from '@/pages/ProfileFeedback/ProfileFeedback.vue'
-import ProfileReplyDetail from '@/pages/ProfileReplyDetail/ProfileReplyDetail.vue'
-// import ProfileExamCalendar from '@/pages/ProfileExamCalendar/ProfileExamCalendar.vue'
-import WrongDetail from '@/pages/WrongDetail/WrongDetail.vue'
-
 import Today from '@/pages/Today/index.vue'
 import Sea from '@/pages/Sea/index.vue'
 import PracticeDetail from '@/pages/Sea/PracticeDetail.vue'
 import SinglePractice from '@/pages/Sea/PracticeStart/SinglePractice.vue'
 import JudgePractice from '@/pages/Sea/PracticeStart/JudgePractice.vue'
+import JudgePracticeTwo from '@/pages/Sea/PracticeStart/JudgePracticeTwo.vue'
 import FillPractice from '@/pages/Sea/PracticeStart/FillPractice.vue'
 import Exam from '@/pages/Exam/Exam.vue'
 import ExamDetail from '@/pages/Exam/ExamDetail.vue'
@@ -44,11 +30,6 @@ import SingleCollection from '@/pages/Mine/Collection/SingleCollection.vue'
 import JudgeCollection from '@/pages/Mine/Collection/JudgeCollection.vue'
 import FillCollection from '@/pages/Mine/Collection/FillCollection.vue'
 
-/*import PaperContainer from '../pages/HomePaperStart/PaperContainer/PaperContainer.vue'
-import PaperCard from '../pages/HomePaperStart/PaperCard/PaperCard.vue'*/
-
-// 路由组件懒加载
-const Wrong = () => import('@/pages/Wrong/Wrong.vue')
 
 Vue.use(VueRouter)
 
@@ -60,6 +41,10 @@ export default new VueRouter({
     {
       path: '/',
       redirect: '/today'
+    },
+    {
+      path: '/login',
+      component: Login
     },
     {
       path: '/today',
@@ -89,7 +74,7 @@ export default new VueRouter({
     },
     {
       path: '/sea/practice/judge/:kindId',
-      component: JudgePractice
+      component: JudgePracticeTwo
     },
     {
       path: '/sea/practice/fill/:kindId',
@@ -154,63 +139,6 @@ export default new VueRouter({
     {
       path: '/profile/collection/fill/:answerId',
       component: FillCollection
-    },
-
-    {
-      path:'/wrong',
-      name:'Wrong',
-      component:Wrong,
-      meta: {
-        showFooter: true
-      }
-    },
-    {
-      path: '/wrong/detail/:paperId',
-      component: WrongDetail
-    },
-
-    {
-      path: '/profile/info',
-      component: ProfileInfo
-    },
-    {
-      path: '/profile/stuscore',
-      component: ProfileStuScore
-    },
-    {
-      path: '/profile/wrongcollection',
-      component: ProfileWrongCollection
-    },
-    // {
-    //   path: '/profile/collection/single/:answerId',
-    //   component: SingleCollection
-    // },
-    // {
-    //   path: '/profile/collection/multiple/:answerId',
-    //   component: MultipleCollection
-    // },
-    // {
-    //   path: '/profile/collection/judge/:answerId',
-    //   component: JudgeCollection
-    // },
-    // {
-    //   path: '/profile/collection/fill/:answerId',
-    //   component: FillCollection
-    // },
-    {
-      path:'/profile/stuscore/detail/:paperId',
-      component:ProfileScoreDetail
-    },
-    {
-      path:'/profile/replydetail',
-      component:ProfileReplyDetail
-    },
-    
-
-    {
-      path: '/login',
-      name:'Login',
-      component: Login
     }
   ]
 })

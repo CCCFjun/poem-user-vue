@@ -256,23 +256,6 @@ export default {
     padding: 20px;
   }
 
-  .login-logo {
-    width: 90%;
-    margin: 20px auto;
-    text-align: center;
-    margin-bottom: 20px;
-    background-image: url('../../common/imgs/java.png'), url('../../common/imgs/cplus.png'), url('../../common/imgs/php.png'), url('../../common/imgs/android.png'), url('../../common/imgs/h5.png'), url('../../common/imgs/ios.png'), url('../../common/imgs/js.png'), url('../../common/imgs/python.png');
-    background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px, 44px 44px, 32px 32px, 28px 28px, 32px 32px;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-    background-position: 2% 5%, 95% 5%, 90% 40%, 12% 42%, 95% 80%, 5% 78%, 80% 100%, 18% 100%;
-
-    .logo_img {
-      width: 160px;
-      height: 160px;
-      border-radius: 80px;
-    }
-  }
-
   .login-wrap {
     width: 90%;
     display: flex;

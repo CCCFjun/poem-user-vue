@@ -12,6 +12,7 @@
       :key="'single'+ item.singleId"
       v-show="index == currentIndex"
     >
+      
       <div class="content">
         <span class="que_content">{{index + 1}}.&nbsp;{{item.content}}</span>
         <img :src="item.pictureSrc" alt style="width: 100%" v-if="item.pictureSrc" />
@@ -55,7 +56,7 @@ export default {
       singleAnswer: "",
       queNum: 0,
       kindId: this.$route.params.kindId,
-      ansShow: []
+      ansShow: [],
     };
   },
   computed: {

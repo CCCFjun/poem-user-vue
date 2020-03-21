@@ -6,21 +6,15 @@
     <Swiper :lunbotuList="rotationImages" :isfull="true" class="swiper"></Swiper>
 
     <div class="kind_list" v-for="(item) in kindList" :key="item.langId" @click="toKindDetail(item.langId)">
-      <div class="item_border" >
-        <div class="kind_list_item" >
-          <span class="kind_title">
-            <!-- <span class="icon_kind">{{queType}}</span> -->
-            {{item.langName}}
-          </span>
-          <img
-            class="kind_img"
-            :src="item.langImgSrc"
-          />
+      <div class="kind_list_item" >
+        <img
+          class="kind_img"
+          :src="getImgUrl(item.langEnName)"
+        />
+        <div class="kind_title">
+          {{item.langName}}
         </div>
       </div>
-    </div>
-    <div class="bottom_tips">
-      <span>我是有底线的</span>
     </div>
 
     <back-to-top
@@ -67,6 +61,9 @@ export default {
         this.rotationImages = result.data
       }
     },
+    getImgUrl(langEnName){
+      return require("@/common/imgs/"+langEnName+".png");
+    },
     async getKindList() {
       let result = await reqPracticeKind();
       if (result.statu == 0) {
@@ -107,28 +104,26 @@ export default {
   width: 100%;
   margin-bottom 50px
   background-color #f5f5f5
-  .kind_list 
-    display: flex;
-    flex-direction: column;
-    .item_border
-      border-bottom: 1px solid #CDC9C9;
-      .kind_list_item 
-        display: flex;
-        flex-direction: column;
-        width: 86%;
-        margin: 0 auto;
-        margin-bottom: 8px;
-        .kind_title 
-          height: 50px;
-          line-height: 50px;
-          font-size: 16px;       
-        .kind_img 
-          height: 120px;        
-        .icon_kind 
-          border: 1px solid #B22222;
-          border-radius: 36%;
-          padding: 3px 8px;
-          color: #B22222;
-          margin-right: 10px;
-        
+  .kind_list
+    margin-top 20px 
+    background-color #EED8AE
+    .kind_list_item  
+      margin-bottom: 8px;
+      width 50%
+      float left
+      text-align center
+      .kind_title 
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+      .kind_img 
+        height: 120px;   
+        width 120px   
+      .icon_kind 
+        border: 1px solid #B22222;
+        border-radius: 36%;
+        padding: 3px 8px;
+        color: #B22222;
+        margin-right: 10px;
+      
 </style>

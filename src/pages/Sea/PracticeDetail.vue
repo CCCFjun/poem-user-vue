@@ -13,17 +13,21 @@
     </HeaderTop>
 
     <div class="paper_info">
-      <img :src="practiceImg" class="paper_src" />
-      <div class="paper_name">{{practiceName}}</div>
+      <!-- <img :src="practiceImg" class="paper_src" /> -->
+      <img class="kind_img" :src="getImgUrl(langEnName)" />
       <div class="paper_intro">{{practiceDesc}}</div>
-      <div class="paper_intro">随机出题，填写回答后，可立即查看答案。</div>
+      <div class="paper_intro">随机出题，回答错误立即退出本次答题。</div>
+      <div class="paper_intro">练习等级提高，题目数增多，答题时间随之减少。</div>
     </div>
     <!--点击试卷开始按钮-->
     <div class="paper_start">
-      <mt-button
-        class="grey_buttom"
-        @click.native="toStartPractice"
-      >开始练习</mt-button>
+      <!-- <mt-button class="grey_buttom" @click.native="toStartPractice">开始练习</mt-button> -->
+      <!-- <mt-button class="grey_buttom" @click.native="toStartPractice">县试</mt-button>
+      <mt-button class="grey_buttom" @click.native="toStartPractice">府试</mt-button>
+      <mt-button class="grey_buttom" @click.native="toStartPractice">院试</mt-button> -->
+      <img @click="toStartPractice(1)" src="@/common/imgs/layer.png" alt="">
+      <img @click="toStartPractice(2)" src="@/common/imgs/layer2.png" alt="">
+      <img @click="toStartPractice(3)" src="@/common/imgs/layer3.png" alt="">
     </div>
   </section>
 </template>
@@ -40,9 +44,9 @@ export default {
       userPhone: this.$store.state.userInfo.userPhone,
       userName: this.$store.state.userInfo.userName,
       kindId: this.$route.params.kindId,
-      practiceName: '',
-      practiceDesc: '',
-      practiceImg: '',
+      practiceName: "",
+      practiceDesc: "",
+      langEnName: "",
       loading: false
     };
   },
@@ -54,22 +58,19 @@ export default {
     }, 800);
   },
   computed: {
-    optionLeft() {
-      return {
-        direction: 2,
-        limitMoveNum: 2
-        // hoverStop: false
-      };
-    },
+
   },
   methods: {
+    getImgUrl(langEnName){
+      return require("@/common/imgs/"+langEnName+".png");
+    },
     async getKindInfoById() {
       const { kindId } = this;
       let result = await reqKindInfoById({ kindId });
       if (result.statu === 0) {
         this.practiceName = result.data.langName;
         this.practiceDesc = result.data.langDesc;
-        this.practiceImg = result.data.langImgSrc;
+        this.langEnName = result.data.langEnName;
       } else {
         Toast({
           message: result.msg,
@@ -78,13 +79,13 @@ export default {
       }
     },
     // 点击开始考试按钮
-    toStartPractice() {
-      if(this.kindId == 12){
-        this.$router.replace("/sea/practice/single/" + this.kindId);
-      }else if(this.kindId == 13){
-        this.$router.replace("/sea/practice/judge/" + this.kindId);
-      }else{
-        this.$router.replace("/sea/practice/fill/" + this.kindId);
+    toStartPractice(praLayer) {
+      if (this.kindId == 12) {
+        this.$router.replace("/sea/practice/single/" + this.kindId + "/" + praLayer);
+      } else if (this.kindId == 13) {
+        this.$router.replace("/sea/practice/judge/" + this.kindId + "/" + praLayer);
+      } else {
+        this.$router.replace("/sea/practice/fill/" + this.kindId + "/" + praLayer);
       }
     }
   },
@@ -98,125 +99,47 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 @import '../../common/stylus/mixins.styl';
 
-.paper {
+.paper 
   padding-top: 45px;
   padding-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  .paper_info {
+  .paper_info 
     width: 100%;
     border-bottom: 8px solid #EEE9E9;
     letter-spacing: 2px;
-
-    .paper_src {
-      width: 100%;
-      height: 120px;
-    }
-
-    .paper_name {
+    text-align center
+    margin-top 10px
+    .kind_img
+      width 120px
+      height 120px
+      
+    .paper_name 
       color: #8B8989;
       padding-left: 12px;
       height: 30px;
       line-height: 30px;
-    }
 
-    .paper_intro {
+    .paper_intro 
       color: #8B8989;
       padding-left: 12px;
       line-height: 30px;
-    }
-  }
 
-  .my_score {
-    border-bottom 16px solid #EEE9E9
-    clearFix()
-    position relative
-    display block
-    padding 10px 10px
-    .profile_image {
-      float left
-      width 60px
-      height 60px
-      border-radius 10%
-      overflow hidden
-      vertical-align top
-    }
-    .user-info {
-      float left
-      margin-top 8px
-      margin-left 15px
-      p {
-        font-weight: 700
-        font-size 18px
-        &.user-info-top {
-          padding-bottom 18px
-        }
-        &.user-info-bottom {
-          color #8B8989
-          font-size 14px
-        }
-      }
-    }
-  }
-  .score_list{
-    .score_list_item{
-      border-bottom 1px solid #EEE9E9
-      clearFix()
-      position relative
-      display block
-      padding 10px 10px
-      .profile_image {
-        float left
-        width 60px
-        height 60px
-        border-radius 10%
-        overflow hidden
-        vertical-align top
-      }
-      .user-info {
-        float left
-        margin-top 8px
-        margin-left 15px
-        p {
-          font-weight: 700
-          font-size 18px
-          &.user-info-top {
-            padding-bottom 18px
-          }
-          &.user-info-bottom {
-            color #8B8989
-            font-size 14px
-          }
-        }
-      }
-      .user_call{
-        float right
-        margin-top 8px
-        margin-right 15px
-        .call_red {
-          color #ff0000
-        }
-        .call_grey {
-          color #8B8989
-        }
-      }
-    }
-  }
-  .paper_start {
-    position: fixed;
-    bottom: 30px;
-    left: 36%;
-    z-index: 100;
-
-    .grey_buttom {
+  .paper_start 
+    margin-top 30px
+    display: flex;
+    flex-direction: column;
+    width 100%
+    align-items: center;
+    >img 
+      margin-top 16px
+    .grey_buttom 
       background-color: #ccc;
       margin-top: 15px;
       margin-bottom: 15px;
       color: #fff;
       border-radius: 45%;
       width: 120px;
-    }
-  }
-}
+
 </style>

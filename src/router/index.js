@@ -14,7 +14,6 @@ import Sea from '@/pages/Sea/index.vue'
 import PracticeDetail from '@/pages/Sea/PracticeDetail.vue'
 import SinglePractice from '@/pages/Sea/PracticeStart/SinglePractice.vue'
 import JudgePractice from '@/pages/Sea/PracticeStart/JudgePractice.vue'
-import JudgePracticeTwo from '@/pages/Sea/PracticeStart/JudgePracticeTwo.vue'
 import FillPractice from '@/pages/Sea/PracticeStart/FillPractice.vue'
 import Exam from '@/pages/Exam/Exam.vue'
 import ExamDetail from '@/pages/Exam/ExamDetail.vue'
@@ -69,15 +68,15 @@ export default new VueRouter({
       component: PracticeDetail,
     },
     {
-      path: '/sea/practice/single/:kindId',
+      path: '/sea/practice/single/:kindId/:praLayer',
       component: SinglePractice
     },
     {
-      path: '/sea/practice/judge/:kindId',
-      component: JudgePracticeTwo
+      path: '/sea/practice/judge/:kindId/:praLayer',
+      component: JudgePractice
     },
     {
-      path: '/sea/practice/fill/:kindId',
+      path: '/sea/practice/fill/:kindId/:praLayer',
       component: FillPractice
     },
     {

@@ -2,8 +2,8 @@
   与后台交互模块 （依赖已封装的ajax函数）
  */
 import ajax from './ajax'
-// const BASE_URL = 'http://localhost:8080/api/student'
-const BASE_URL = process.env.BASE_API
+const BASE_URL = "/api/user"
+// const BASE_URL = "http://101.37.13.111:8085/api/user"
 
 /*
   获取轮播图片数据

@@ -9,7 +9,7 @@
 
     <div class="profile_feedback_field">
       <div class="feedback_current_time">{{currentDate | date-format}}</div>
-      <mt-field label="意见反馈" placeholder="有事请留言"
+      <mt-field label="意见反馈" placeholder="欢迎给我们提建议"
                 type="textarea" rows="6" v-model="feedback"/>
       <i class="iconfont iconbiaoqing" id="emotionBtn" @click="clickEmotion" :style="{ color: showEmotion?'#6ba7f0':''}"></i>
       <mt-button type="primary" size="large" @click="sendFeedback">发送</mt-button>

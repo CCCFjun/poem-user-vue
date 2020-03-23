@@ -40,9 +40,9 @@
       <div @click="toDetail('/profile/feedback')" class="item_list">
         <ProfileItem title="反馈留言"></ProfileItem>
       </div>
-      <!-- <div @click="toDetail('/profile/profileNotice')" class="item_list">
+      <div @click="toDetail('/profile/profileNotice')" class="item_list">
         <ProfileItem title="通知"></ProfileItem>
-      </div> -->
+      </div>
 
       <!--退出登录-->
       <div class="login_out" :class="isSelect?'opacity':''"
@@ -75,9 +75,9 @@
     created(){
       if (this.$store.state.userInfo.userPhone) {
         //登录成功进入profile页面异步更新state李的examCalendar，防止进入首页来不及异步获取examCalendar控制台报undefined错误
-        this.$store.dispatch('getExamCalendar',function () {
-          sessionStorage.setItem("examCalendar", JSON.stringify(self.$store.state.examCalendar));
-        });
+        // this.$store.dispatch('getExamCalendar',function () {
+        //   sessionStorage.setItem("examCalendar", JSON.stringify(self.$store.state.examCalendar));
+        // });
         //获取未读消息条数
         this.$store.dispatch('getUnreadMsgCount');
         //登录成功获取反馈信息保存到vuex的state
@@ -106,7 +106,7 @@
           //清除vuex中unreadMsgCount
           this.$store.dispatch('resetUnreadMsgCount');
           //清除vuex中examCalendar
-          this.$store.dispatch('recordExamCalendar', []);
+          // this.$store.dispatch('recordExamCalendar', []);
           // sessionStorage.removeItem("feedbackInfo");
           Toast({
             message:'退出成功',

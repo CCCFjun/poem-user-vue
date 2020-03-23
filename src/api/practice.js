@@ -2,13 +2,13 @@
   与后台交互模块 （依赖已封装的ajax函数）
  */
 import ajax from './ajax'
-const BASE_URL = 'api/user'
-// const BASE_URL = 'https://www.fastmock.site/mock/0654ca1b5c81592c50136ed1f9afb5ff/poem/api/user'
+const BASE_URL = "/api/user"
+// const BASE_URL = "http://101.37.13.111:8085/api/user"
 
 /*
   获取轮播图片数据
  */
-export const reqRotationImages = () => ajax('api/admin' + '/getRotationImgsList')
+export const reqRotationImages = () => ajax('http://101.37.13.111:8085/api/admin' + '/getRotationImgsList')
 /*
   获取题型种类数据
  */

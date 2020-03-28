@@ -32,3 +32,7 @@ export const reqSendFeedback = ({userPhone, feedback}) => ajax(BASE_URL + '/user
   获取公告列表
  */
 export const reqGetNoticesList = () => ajax(BASE_URL + '/getNoticesList')
+/*
+  我的页面顶部右侧管理员回复消息提醒数目
+ */
+export const reqUnreadMsgCount = (userPhone) => ajax(BASE_URL + '/adminReplyCount', { userPhone })

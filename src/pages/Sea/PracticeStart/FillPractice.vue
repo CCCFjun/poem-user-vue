@@ -31,7 +31,6 @@
       v-if="isEnd"
       :result="isPass"
       :kindId="kindId"
-      :resultMsg="resultMsg"
     />
   </section>
 </template>
@@ -58,7 +57,6 @@ export default {
       isRight: [],
       isEnd: false,
       isPass: "",
-      resultMsg: ""
     };
   },
   computed: {
@@ -84,7 +82,6 @@ export default {
             this.currentIndex++    //隐藏题目
             this.isEnd = true
             this.isPass = "fail"
-            this.resultMsg = "回答超时"
           }, 1000);
         }
         this.timer += 1;
@@ -154,7 +151,6 @@ export default {
           this.currentIndex++
           this.isEnd = true
           this.isPass = "fail"
-          this.resultMsg = "回答错误"
         }, 1000);
       }
     },

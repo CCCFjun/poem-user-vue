@@ -6,25 +6,27 @@
       </a>
     </HeaderTop>
 
+    
     <section
       class="que"
       v-for="(item, index) in singleList"
       :key="'single'+ item.singleId"
       v-show="index == currentIndex"
     >
-      <mt-progress :value="timer" :bar-height="5"></mt-progress>
+      <!-- <mt-progress :value="timer" :bar-height="5"></mt-progress> -->
+      <div class="count_down">{{timer}}</div>
       <div class="content">
         <span class="que_content">{{index + 1}}.&nbsp;{{item.content}}</span>
-        <img :src="item.pictureSrc" alt style="width: 100%" v-if="item.pictureSrc" />
-        <mt-radio v-model="singleAnswer" :options="singleList[index].options" v-if="kindId != 14"></mt-radio>
-        <div class="btn_group" v-else>
-          <mt-button
-            size="normal"
-            v-for="(opItem, i) in singleList[index].options"
-            :key="'op'+i"
-            @click.native="matchAns(opItem.value, i)"
-            :class="{'green_border':isRight[currentIndex] == 1&&btnChecked == i,'red_border':isRight[currentIndex] == 0&&btnChecked == i}"
-          >{{opItem.label}}</mt-button>
+        <div class="tip_group">
+          <div v-if="showTip[0] == 1">{{singleList[index].options[0].label}}</div>
+          <div v-if="showTip[1] == 1">{{singleList[index].options[1].label}}</div>
+          <div v-if="showTip[2] == 1">{{singleList[index].options[2].label}}</div>
+        </div>
+        <div class="fill_answer">
+          <mt-field v-model="singleAnswer" rows="3"></mt-field>
+        </div>
+        <div class="que_match">
+          <mt-button @click="matchAns(currentIndex)">确定</mt-button>
         </div>
         <div v-if="ansShow[currentIndex]" class="que_ans">
           <i class="iconfont icon-gou1" v-if="isRight[currentIndex] == 1"></i>
@@ -32,7 +34,7 @@
         </div>
       </div>
     </section>
-    <ResultPage v-if="isEnd" :result="isPass" :kindId="kindId" />
+    <ResultPage v-if="isEnd" :result="isPass" :kindId="kindId"/>
   </section>
 </template>
 
@@ -58,7 +60,9 @@ export default {
       isRight: [],
       isEnd: false,
       isPass: "",
-      btnChecked: -1
+      showTip: [],
+      count: 0,
+      flagCount: 0
     };
   },
   computed: {},
@@ -68,6 +72,7 @@ export default {
       spinnerType: "fading-circle"
     });
     this.getSingleList(() => {
+      this.$set(this.showTip,0,1)
       this.countTime();
       this.isRight.length = this.queNum;
     });
@@ -76,7 +81,16 @@ export default {
     countTime() {
       clearInterval(this.countdownInterval);
       this.countdownInterval = setInterval(() => {
-        if (this.timer == 100) {
+        this.timer--
+        this.count++
+        if(3*this.count == this.timerCount){
+          this.$set(this.showTip,1,1)
+          this.flagCount = this.count
+        }
+        if(this.count + this.flagCount == this.timerCount){
+          this.$set(this.showTip,2,1)  
+        }
+        if (this.timer == 0) {
           //超时未作答
           clearInterval(this.countdownInterval);
           setTimeout(() => {
@@ -85,22 +99,24 @@ export default {
             this.isPass = "fail";
           }, 1000);
         }
-        this.timer += 1;
-      }, this.timerCount);
+      }, 1000);
     },
     async getSingleList(callback) {
       switch (this.praLayer) {
         case "1":
           this.queNum = 3;
-          this.timerCount = 80;
+          this.timerCount = 30;
+          this.timer = this.timerCount
           break;
         case "2":
           this.queNum = 5;
-          this.timerCount = 60;
+          this.timerCount = 24;
+          this.timer = this.timerCount
           break;
         case "3":
           this.queNum = 10;
-          this.timerCount = 40;
+          this.timerCount = 15;
+          this.timer = this.timerCount
           break;
       }
       const { queNum, kindId } = this;
@@ -118,13 +134,13 @@ export default {
       }
     },
     //判断答案
-    matchAns(val, i){
-      this.btnChecked = i
+    matchAns(i){
       this.$set(this.ansShow, this.currentIndex, 1)
         //回答正确
-        if (val == this.singleList[this.currentIndex].singleAnswer) {
+        if (this.singleAnswer == this.singleList[this.currentIndex].singleAnswer) {
           this.$set(this.isRight, this.currentIndex, 1)
           clearInterval(this.countdownInterval); //清除当前题目计时器
+          console.log(this.queNum)
           if (this.currentIndex == this.queNum - 1) {
             setTimeout(() => {
               //全部回答正确
@@ -139,24 +155,20 @@ export default {
             }, 1000);
           }
         } else {
-          //回答错误，退出
+          //回答错误，
           this.$set(this.isRight, this.currentIndex, 0)
-          clearInterval(this.countdownInterval);
-          setTimeout(() => {
-            this.currentIndex++;
-            this.isEnd = true;
-            this.isPass = "fail";
-          }, 1000);
         }
     },
     //点击下一题
     nextItem() {
-      this.timer = 0;
+      this.timer = this.timerCount
       this.singleAnswer = "";
       this.currentIndex++;
-      if (this.timer == 0) {
-        this.countTime();
-      }
+      this.showTip[1] = 0
+      this.showTip[2] = 0
+      this.flagCount = 0
+      this.count = 0
+      this.countTime();
     },
     //点击返回按钮
     toBack() {
@@ -177,11 +189,6 @@ export default {
     ResultPage
   },
   watch: {
-    singleAnswer(val) {
-      if (val != "") {
-        this.matchAns(val)
-      }
-    }
   }
 };
 </script>
@@ -198,16 +205,23 @@ export default {
   }
 
   .que {
+    .count_down{
+      width 40px
+      height 40px
+      font-size 26px
+      color #00CD66
+      margin 0 auto
+    }
+    
     .content {
       height: 24px;
       line-height: 24px;
-
+      text-align center
       > span {
         display: block;
       }
 
       .que_ans {
-        margin: 30px 0 0 40%;
 
         .iconfont {
           font-size: 34px;
@@ -241,23 +255,27 @@ export default {
         line-height: 30px;
       }
 
-      .btn_group {
-        margin-top: 20px;
-        width: 180px;
-        position: absolute;
-        left: 50%;
-        margin-left: -90px;
-
-        .mint-button {
-          width: 60px;
-          height: 60px;
-          font-size: 26px;
+      .tip_group {
+        margin 0 auto
+        height 300px
+        >div {
+          width 50%
+          margin 0 auto
+          font-size: 24px;
+          text-align center
+          border 1px solid #ccc
+          border-radius 50%
+          margin-top 10px
+          padding 10px 0
         }
-        .green_border {
-          border 1px solid #00CD66
-        }
-        .red_border {
-          border 1px solid #FF0000
+      }
+      .fill_answer{
+        margin-bottom: 25px;
+        .mint-field {
+          border: 1px solid #ccc;
+          width: 70%;
+          margin: 0 auto;
+          border-radius: 10%;
         }
       }
     }

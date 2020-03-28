@@ -13,12 +13,14 @@ import Today from '@/pages/Today/index.vue'
 import Sea from '@/pages/Sea/index.vue'
 import PracticeDetail from '@/pages/Sea/PracticeDetail.vue'
 import SinglePractice from '@/pages/Sea/PracticeStart/SinglePractice.vue'
+import SingleTwoPractice from '@/pages/Sea/PracticeStart/SingleTwoPractice.vue'
 import JudgePractice from '@/pages/Sea/PracticeStart/JudgePractice.vue'
 import FillPractice from '@/pages/Sea/PracticeStart/FillPractice.vue'
 import Exam from '@/pages/Exam/Exam.vue'
 import ExamDetail from '@/pages/Exam/ExamDetail.vue'
 import ExamStart from '@/pages/Exam/ExamStart.vue'
 import ExamAnswer from '@/pages/Exam/ExamAnswer.vue'
+import Forum from '@/pages/Forum/Forum.vue'
 import Profile from '@/pages/Mine/Profile.vue'
 import ProfileInfoChange from '@/pages/Mine/ProfileInfoChange.vue'
 import ProfilePswChange from '@/pages/Mine/ProfilePswChange.vue'
@@ -72,6 +74,10 @@ export default new VueRouter({
       component: SinglePractice
     },
     {
+      path: '/sea/practice/singleTwo/:kindId/:praLayer',
+      component: SingleTwoPractice
+    },
+    {
       path: '/sea/practice/judge/:kindId/:praLayer',
       component: JudgePractice
     },
@@ -100,6 +106,14 @@ export default new VueRouter({
       component:ExamAnswer,
     },
     {
+      path: '/forum',
+      name:'Forum',
+      component: Forum,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
       path:'/profile',
       name:'Profile',
       component:Profile,
@@ -116,14 +130,6 @@ export default new VueRouter({
       component:ProfileInfoChange
     },
     {
-      path:'/profile/feedback',
-      component:ProfileFeedback
-    },
-    {
-      path:'/profile/profileNotice',
-      component:ProfileNotice
-    },
-    {
       path: '/profile/collectionList',
       component: CollectionList
     },
@@ -138,6 +144,18 @@ export default new VueRouter({
     {
       path: '/profile/collection/fill/:answerId',
       component: FillCollection
+    },
+    {
+      path:'/profile/feedback',
+      component:ProfileFeedback
+    },
+    {
+      path:'/profile/profileNotice',
+      component:ProfileNotice
     }
+    // {
+    //   path:'/profile/replydetail',
+    //   component:ProfileNotice
+    // }
   ]
 })

@@ -3,16 +3,12 @@
 */
 import Vue from 'vue'
 import {
-  RECEIVE_ROTATION_IMAGES,
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
   RECEIVE_USER_UNREADMSG_COUNT,
   RESET_USER_UNREADMSG_COUNT,
   RECEIVE_USER_FEEDBACK_INFO,
   RECORD_FEEDBACK_INFO,
-  RECEIVE_EXAM_CALENDAR,
-  RECORD_EXAM_CALENDAR,
-  RECEIVE_LANGUAGES_INFO,
   INIT_SINGLE_ANSWERS_LENGTH,
   INIT_MULTIPLE_ANSWERS_LENGTH,
   INIT_JUDGE_ANSWERS_LENGTH,
@@ -37,9 +33,6 @@ import {
 } from "./mutation-types";
 // [方法名](state,{param}){}
 export default {
-  [RECEIVE_ROTATION_IMAGES] (state, {rotationImages}){
-    state.rotationImages = rotationImages;
-  },
   [RECEIVE_USER_INFO] (state, {userInfo}) {
     state.userInfo = userInfo
   },
@@ -57,15 +50,6 @@ export default {
   },
   [RECORD_FEEDBACK_INFO] (state, {feedbackInfo}) {
     state.feedbackInfo = feedbackInfo
-  },
-  [RECEIVE_EXAM_CALENDAR] (state, {examCalendar}){
-    state.examCalendar = examCalendar;
-  },
-  [RECORD_EXAM_CALENDAR] (state, {examCalendar}) {
-    state.examCalendar = examCalendar
-  },
-  [RECEIVE_LANGUAGES_INFO] (state, {languagesInfo}) {
-    state.languagesInfo = languagesInfo;
   },
   [INIT_SINGLE_ANSWERS_LENGTH] (state, {singleNum}) {
     state.singleAnswers.length = singleNum;

@@ -45,10 +45,10 @@ export const reqFindPsw = ({findSno, findPhone, findSecurityCode, findNewPsw, fi
   学生反馈留言
  */
 export const reqSendFeedback = ({sno, feedback}) => ajax(BASE_URL + '/studentSendFeedback',{sno, feedback},'POST')
-/*
-  我的页面顶部右侧管理员回复消息提醒数目
- */
-export const reqUnreadMsgCount = (sno) => ajax(BASE_URL + '/adminReplyCount', { sno })
+// /*
+//   我的页面顶部右侧管理员回复消息提醒数目
+//  */
+// export const reqUnreadMsgCount = (sno) => ajax(BASE_URL + '/adminReplyCount', { sno })
 /*
   更新反馈信息状态为学生端已读取
  */

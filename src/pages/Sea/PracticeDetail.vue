@@ -80,9 +80,11 @@ export default {
     },
     // 点击开始考试按钮
     toStartPractice(praLayer) {
-      if (this.kindId == 12) {
+      if (this.kindId == 12 || this.kindId == 14) {
         this.$router.replace("/sea/practice/single/" + this.kindId + "/" + praLayer);
-      } else if (this.kindId == 13) {
+      } else if(this.kindId == 15){
+        this.$router.replace("/sea/practice/singleTwo/" + this.kindId + "/" + praLayer);
+      }else if (this.kindId == 13) {
         this.$router.replace("/sea/practice/judge/" + this.kindId + "/" + praLayer);
       } else {
         this.$router.replace("/sea/practice/fill/" + this.kindId + "/" + praLayer);

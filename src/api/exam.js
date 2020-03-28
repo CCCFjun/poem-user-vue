@@ -3,7 +3,7 @@ const BASE_URL = "/api/user"
 // const BASE_URL = "http://101.37.13.111:8085/api/user"
 
 // 获取全部科举试卷信息
-export const reqGetPapersList = () => ajax(BASE_URL + '/getAdminPapersList')
+export const reqGetPapersList = () => ajax(BASE_URL + '/getUserPapersList')
 
 /*
   通过paperId获取试卷信息

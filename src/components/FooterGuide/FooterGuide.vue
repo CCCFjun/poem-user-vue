@@ -21,7 +21,12 @@
       <span>科举</span>
     </div>
 
-    
+    <div class="guide_item" @click="goto('/forum')" :class="{on: isCurrent('/forum')}">
+      <span class="item_icon">
+        <i class="iconfont icon-luntan"></i>
+      </span>
+      <span>百家</span>
+    </div>
 
     <div class="guide_item" @click="goto('/profile')" :class="{on: isCurrent('/profile')}">
       <span class="item_icon">

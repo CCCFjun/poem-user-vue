@@ -14,7 +14,7 @@
         </li>
         <li class="message_li">
           <viewer>
-            <img src="../../common/imgs/teacher2.jpg" alt />
+            <img src="../../common/imgs/adminlogo.png" alt />
           </viewer>
           <span>
             {{item.noticeContent}}

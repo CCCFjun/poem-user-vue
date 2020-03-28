@@ -4,24 +4,17 @@
 
 // 注意要引入api接口函数
 import {
-  reqRotationImages,
   reqLogout,
-  reqUnreadMsgCount,
+  // reqUnreadMsgCount,
   reqFeedbackInfo,
-  reqExamCalendar,
-  reqLanguagesInfo
 } from '../api'
 import {
-  RECEIVE_ROTATION_IMAGES,
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
   RECEIVE_USER_UNREADMSG_COUNT,
   RESET_USER_UNREADMSG_COUNT,
   RECEIVE_USER_FEEDBACK_INFO,
   RECORD_FEEDBACK_INFO,
-  RECEIVE_EXAM_CALENDAR,
-  RECORD_EXAM_CALENDAR,
-  RECEIVE_LANGUAGES_INFO,
   INIT_SINGLE_ANSWERS_LENGTH,
   INIT_MULTIPLE_ANSWERS_LENGTH,
   INIT_JUDGE_ANSWERS_LENGTH,
@@ -42,26 +35,6 @@ import {
 } from "./mutation-types";
 
 export default {
-  //异步获取轮播图片数组
-  async getRotationImages({commit}){
-    // 发送异步ajax请求
-    const result = await reqRotationImages()
-    // 提交一个mutation
-    if (result.statu === 0) {
-      const rotationImages = result.data
-      commit(RECEIVE_ROTATION_IMAGES, {rotationImages})
-    }
-  },
-  //异步获取首页编程语言信息数组
-  async getLanguagesInfo({commit}){
-    // 发送异步ajax请求
-    const result = await reqLanguagesInfo()
-    // 提交一个mutation
-    if (result.statu === 0) {
-      const languagesInfo = result.data
-      commit(RECEIVE_LANGUAGES_INFO, {languagesInfo})
-    }
-  },
   // 同步记录用户信息
   recordUser ({commit}, userInfo) {
     commit(RECEIVE_USER_INFO, {userInfo})
@@ -74,20 +47,20 @@ export default {
     }
   },
   //获取未读消息数目
-  async getUnreadMsgCount({commit, state}){
-    const result = await reqUnreadMsgCount(state.userInfo.sno);
-    if (result.statu === 0) {
-      const unreadMsgCount = result.data;
-      commit(RECEIVE_USER_UNREADMSG_COUNT,{unreadMsgCount})
-    }
-  },
+  // async getUnreadMsgCount({commit, state}){
+  //   const result = await reqUnreadMsgCount(state.userInfo.userPhone);
+  //   if (result.statu === 0) {
+  //     const unreadMsgCount = result.data;
+  //     commit(RECEIVE_USER_UNREADMSG_COUNT,{unreadMsgCount})
+  //   }
+  // },
   //同步重置未读消息数目
   resetUnreadMsgCount({commit}){
     commit(RESET_USER_UNREADMSG_COUNT)
   },
   //异步获取反馈信息
   async receiveFeedbackInfo({commit, state}, setStore){
-    const result = await reqFeedbackInfo(state.userInfo.sno);
+    const result = await reqFeedbackInfo(state.userInfo.userPhone);
     if (result.statu == 0){
       const feedbackInfo = result.data;
       commit(RECEIVE_USER_FEEDBACK_INFO, {feedbackInfo});
@@ -97,22 +70,6 @@ export default {
   //同步记录反馈信息
   recordFeedbackInfo ({commit}, feedbackInfo) {
     commit(RECORD_FEEDBACK_INFO, {feedbackInfo})
-  },
-  //异步获取考试日历数组
-  async getExamCalendar({commit}, setStore){
-    // 发送异步ajax请求
-    const result = await reqExamCalendar()
-    // 提交一个mutation
-    if (result.statu === 0) {
-      const examCalendar = result.data
-      sessionStorage.setItem("examCalendar",JSON.stringify(examCalendar))
-      commit(RECEIVE_EXAM_CALENDAR, {examCalendar})
-      setStore && setStore()
-    }
-  },
-  //同步记录考试日历
-  recordExamCalendar ({commit}, examCalendar) {
-    commit(RECORD_EXAM_CALENDAR, {examCalendar})
   },
 
   //初始化单选题答案数组长度

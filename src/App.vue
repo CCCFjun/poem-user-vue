@@ -79,11 +79,11 @@
     watch: {
       '$route' (to, from) {
         let isBack = this.$router.isBack;  //  监听路由变化时的状态为前进还是后退
-        if (from.path === '/profile' && to.path === '/search' || from.path === '/profile' && to.path === '/wrong'
-          || from.path === '/profile' && to.path === '/home'
-          || from.path === '/search' && to.path === '/wrong'
-          || from.path === '/search' && to.path === '/home'
-          || from.path === '/wrong' && to.path === '/home') {
+        if (from.path === '/profile' && to.path === '/sea' || from.path === '/profile' && to.path === '/exam'
+          || from.path === '/profile' && to.path === '/today'
+          || from.path === '/sea' && to.path === '/exam'
+          || from.path === '/sea' && to.path === '/today'
+          || from.path === '/exam' && to.path === '/today') {
    /*       console.log(from.path);
           console.log(to.path);*/
           this.transitionName = 'slide-right'
@@ -119,7 +119,7 @@
         } else {
           if (JSON.parse(sessionStorage.getItem("userInfo"))) {
             // 实例化socket
-            this.socket = new WebSocket(process.env.BASE_WEBSOCKET + JSON.parse(sessionStorage.getItem("userInfo")).sno)
+            this.socket = new WebSocket('ws://localhost:8080')
             // 监听socket连接
             this.socket.onopen = this.open
             // 监听socket错误信息

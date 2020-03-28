@@ -1,16 +1,12 @@
 /*
   包含n个mutation的type名称常量
  */
-export const RECEIVE_ROTATION_IMAGES = 'receive_rotation_images' // 接收首页轮播图数组
 export const RECEIVE_USER_INFO = 'receive_user_info' // 接收用户信息
 export const RESET_USER_INFO = 'reset_user_info' // 重置用户信息
 export const RECEIVE_USER_UNREADMSG_COUNT = 'receive_user_unreadmsg_count' // 接收用户我的页面未读消息条数
 export const RESET_USER_UNREADMSG_COUNT = 'reset_user_unreadmsg_count' // 重置我的页面未读消息条数
 export const RECEIVE_USER_FEEDBACK_INFO = 'receive_feedback_info' // 获取我的页面未读消息条数
 export const RECORD_FEEDBACK_INFO = 'record_feedback_info' //重置反馈信息
-export const RECEIVE_EXAM_CALENDAR = 'receive_exam_calendar' // 接收考试日历数组
-export const RECORD_EXAM_CALENDAR = 'record_exam_calendar' // 同步考试日历数组
-export const RECEIVE_LANGUAGES_INFO = 'receive_languages_info' // 接收首页编程语言信息数组
 
 export const INIT_SINGLE_ANSWERS_LENGTH = 'init_single_answers_length' // 初始化单选题答案数组长度
 export const INIT_MULTIPLE_ANSWERS_LENGTH = 'init_multiple_answers_length' // 初始化多选题答案数组长度

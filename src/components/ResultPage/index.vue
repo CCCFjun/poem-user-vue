@@ -7,7 +7,6 @@
       </a>
     </HeaderTop>
     <img class="result_img" :src="getImgUrl(result)" />  
-    <p class="result_msg">{{resultMsg}}</p>
   </div>
 </transition>
 </template>
@@ -22,12 +21,8 @@ export default {
   props: {
     result: "",
     kindId: 0,
-    resultMsg: ""
   },
   created() {
-    // setTimeout(()=>{
-    //   this.toBack()
-    // },1000)
   },
   methods: {
     getImgUrl(result) {
@@ -49,6 +44,7 @@ export default {
 }
 .result_page 
   width: 100%;
+  height 90%
   position: fixed;
   top: 0;
   left: 0;

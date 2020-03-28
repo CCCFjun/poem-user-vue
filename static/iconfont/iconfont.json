@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5260051",
+      "name": "加号",
+      "font_class": "hao",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "2197757",
+      "name": "羽毛笔",
+      "font_class": "yumaobi",
+      "unicode": "e703",
+      "unicode_decimal": 59139
+    },
+    {
+      "icon_id": "1287712",
+      "name": "论坛",
+      "font_class": "luntan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "10293598",
       "name": "计时器",
       "font_class": "jishiqi",

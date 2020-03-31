@@ -36,7 +36,17 @@ export default {
       align-items center
       color #0000FF
       text-decoration none 
+    .cancel
+      width 18%
+      height 100%
+      display flex
+      justify-content center
+      align-items center
+      color #CDC5BF
+      text-decoration none
     .header_message
+      span 
+        color #0000FF
       img
         width 30px
         height 30px

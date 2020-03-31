@@ -22,15 +22,13 @@
     </section>
 
     <section class="profile-items">
-      <!-- <div @click="toDetail('/profile/stuscore')">
-        <ProfileItem title="查看成绩" icon="iconchakan"></ProfileItem>
-      </div> -->
-      <div @click="toDetail('/profile/collectionList')" class="kind_one item_list">
+      <div @click="toDetail('/profile/collectionList')" class="item_list">
         <ProfileItem title="收藏题目"></ProfileItem>
       </div>
-      <!-- <div @click="toDetail('/profile/examcalendar')">
-        <ProfileItem title="考试日历" icon="iconrili2"></ProfileItem>
-      </div> -->
+      <div @click="toDetail('/profile/like')" class="kind_one item_list">
+        <ProfileItem title="喜欢"></ProfileItem>
+      </div>
+
       <div @click="toDetail('/profile/pswchange')" class="item_list">
         <ProfileItem title="密码修改"></ProfileItem>
       </div>

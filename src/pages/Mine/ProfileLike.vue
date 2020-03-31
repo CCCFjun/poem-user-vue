@@ -1,19 +1,15 @@
 <template>
   <section class="posts">
     <!--利用$router.back()返回上一级路由 -->
-    <HeaderTop title="百家">
-      <div class="header_message" slot="right" @click="showAction">
-        <i class="iconfont icon-hao"></i>
-      </div>
+    <HeaderTop title="喜欢">
+      <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
+        <i class="iconfont iconxiazai6"></i>返回
+      </a>
     </HeaderTop>
 
-    <mt-actionsheet :actions="actions" v-model="sheetVisible"></mt-actionsheet>
-
-    <ly-tab v-model="selectedLabId" :items="items" :options="options" @change="clickTab"></ly-tab>
-
     <div class="label_container">
-      <mt-loadmore :top-method="loadTop" ref="loadmore">
-          <div class="post_list" v-for="(item, index) in showPostList" :key="item.pid" @click="toPostDetail(item.pid, item.userInfo[0].userPhone)">
+      <mt-loadmore :top-method="loadTop" ref="loadmore" v-if="haveLikeList.length != 0">
+          <div class="post_list" v-for="(item, index) in haveLikeList" :key="item.pid" @click="toPostDetail(item.pid, item.userInfo[0].userPhone)">
             <div class="user_info">
               <div class="user_img">
                 <img
@@ -32,14 +28,15 @@
             <div class="post_content"><pre>{{item.content}}</pre></div>
             <div class="post_opt">
               <i class="iconfont icon-xiaoxi"></i><span v-if="item.replayCount != 0">{{item.replayCount}}</span>
-              <!-- <i :class="{'iconfont':isLike[index], 'icon-like-chose':isLike[index]==1, 'icon-xihuan':isLike[index]==0}" @click.stop="clickLike(item.pid)"></i> -->
               <i v-if="isLike[index]==1" class="iconfont icon-like-chose" @click.stop="clickLike(item.pid, index)"></i>
               <i v-else class="iconfont icon-xihuan" @click.stop="clickLike(item.pid ,index)"></i>
               <span v-if="likeCount[index] != 0">{{likeCount[index]}}</span>
             </div>
           </div>
       </mt-loadmore>
-
+      <div v-else class="none_like">
+          <p>暂无数据</p>
+      </div>
       <back-to-top
         :custom-style="myBackToTopStyle"
         :visibility-height="300"
@@ -53,25 +50,13 @@
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 import BackToTop from "../../components/BackToTop";
-import { reqGetPostList, reqGetLabelList, reqUpdateLikePost, reqGetAllLikePostOnlyPid } from "@/api/forum";
+import { reqGetAllLikePost, reqUpdateLikePost } from "@/api/forum";
 import { Toast, Actionsheet } from "mint-ui";
-import Star from "../../components/Star/Star.vue";
 import { mapState } from "vuex";
 export default {
   name: "",
   data() {
-    let that = this;
     return {
-      actions: [
-        {
-          name: "题目贴",
-          method: that.toPostProblem
-        },
-        {
-          name: "闲话贴",
-          method: that.toPostTalk
-        }
-      ],
       myBackToTopStyle: {
         right: "16px",
         bottom: "66px",
@@ -82,72 +67,26 @@ export default {
         background: "#e7eaf1" // 按钮的背景颜色 The background color of the button
       },
       sheetVisible: false,
-      postOneList: [],
-      postTwoList: [],
-      postAllList: [],
-      showPostList: [],
       haveLikeList: [],
       isLike: [],
       likeCount: [],
-      selectedLabId: 0,
-      items: [],
-      options: {
-        activeColor: "#1d98bd",
-        // 可在这里指定labelKey为你数据里文字对应的字段
-        labelKey: "labelName"
-      }
     };
   },
   computed: {},
   created() {
-    this.getPostList(()=>{
-      this.getAllLikePost()
-    })
-    this.getPostLabelList()
-    
+    this.getAllLikePost()
   },
   methods: {
-    async getPostList(callback) {
-      let result = await reqGetPostList();
-      if (result.statu == 0) {
-        this.postOneList = result.data.onePostData;
-        this.postTwoList = result.data.twoPostData;
-        this.postAllList = result.data.allPostData;
-        this.showPostList = this.postAllList;
-        this.isLike.length = this.postAllList.length
-        this.likeCount.length = this.postAllList.length
-        callback && callback()
-      } else {
-        Toast({
-          message: result.msg,
-          duration: 2000
-        });
-      }
-    },
-    async getPostLabelList() {
-      let result = await reqGetLabelList();
-      if (result.statu == 0) {
-        this.items = result.data;
-        this.items.unshift({ lid: 0, labelName: "全部" });
-      } else {
-        Toast({
-          message: result.msg,
-          duration: 2000
-        });
-      }
-    },
     async getAllLikePost() {
       let userPhone = this.$store.state.userInfo.userPhone
-      let result = await reqGetAllLikePostOnlyPid( {userPhone});
+      let result = await reqGetAllLikePost( {userPhone});
       if (result.statu == 0) {
         this.haveLikeList = result.data
+        this.isLike.length = this.haveLikeList.length
+        this.likeCount.length = this.haveLikeList.length
         for(let i=0; i<this.isLike.length; i++){
-          if(this.haveLikeList.indexOf(this.postAllList[i].pid) != -1){
             this.$set(this.isLike, i, 1)
-          }else{
-            this.$set(this.isLike, i, 0)
-          }
-          this.likeCount[i] = this.postAllList[i].good
+            this.likeCount[i] = this.haveLikeList[i].good
         }
       } else {
         Toast({
@@ -167,41 +106,11 @@ export default {
         this.$set(this.likeCount, i, this.likeCount[i]+1)
       }
     },
-    clickTab(item, index) {
-      if (item.lid == 0) {
-        this.showPostList = this.postAllList;
-      } else if (item.lid == 1) {
-        this.showPostList = this.postOneList;
-      } else {
-        this.showPostList = this.postTwoList;
-      }
-    },
     loadTop() {
-      
+        this.getAllLikePost();
     },
     toPostDetail(pid, userPhone) {
-      if (!this.$store.state.userInfo.userPhone) {
-        Toast({
-          message: "请先登录系统",
-          duration: 1000
-        });
-        return;
-      } else {
         this.$router.push("/forum/detail/" + pid + "/" + userPhone);
-      }
-    },
-    showAction() {
-      this.sheetVisible = !this.sheetVisible;
-    },
-    toPostProblem() {
-      let labelId = 1;
-      let labelName = "题目贴";
-      this.$router.push("/forum/add/" + labelId + "/" + labelName);
-    },
-    toPostTalk() {
-      let labelId = 2;
-      let labelName = "闲话贴";
-      this.$router.push("/forum/add/" + labelId + "/" + labelName);
     }
   },
   components: {
@@ -217,30 +126,14 @@ export default {
 .posts {
   padding-top: 45px;
 
-  .add_post {
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    bottom: 16%;
-    right: 10%;
-    background-color: #FF0000;
-    border-radius: 50%;
-    z-index: 999;
-
-    .iconfont {
-      display: inline-block;
-      color: #fff;
-      margin-left: 15px;
-      margin-top: 15px;
-      font-size: 20px;
-    }
-  }
-
   .label_container {
-    margin-top: 10px;
     width: 90%;
     margin-left: 5%;
     margin-bottom 50px
+    .none_like{
+        text-align center
+        margin-top 10%
+    }
     .post_list {
       border-bottom: 1px solid #ccc;
       margin-top 10px

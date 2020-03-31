@@ -5,9 +5,7 @@
 // 注意要引入api接口函数
 import {
   reqLogout,
-  // reqUnreadMsgCount,
-  reqFeedbackInfo,
-} from '../api'
+} from '@/api/mine'
 import {
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
@@ -60,12 +58,12 @@ export default {
   },
   //异步获取反馈信息
   async receiveFeedbackInfo({commit, state}, setStore){
-    const result = await reqFeedbackInfo(state.userInfo.userPhone);
-    if (result.statu == 0){
-      const feedbackInfo = result.data;
-      commit(RECEIVE_USER_FEEDBACK_INFO, {feedbackInfo});
-      setStore && setStore()
-    }
+    // const result = await reqFeedbackInfo(state.userInfo.userPhone);
+    // if (result.statu == 0){
+    //   const feedbackInfo = result.data;
+    //   commit(RECEIVE_USER_FEEDBACK_INFO, {feedbackInfo});
+    //   setStore && setStore()
+    // }
   },
   //同步记录反馈信息
   recordFeedbackInfo ({commit}, feedbackInfo) {

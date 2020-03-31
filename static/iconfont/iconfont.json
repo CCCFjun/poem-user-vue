@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2544690",
+      "name": "喜欢",
+      "font_class": "xihuan",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "13320933",
+      "name": "喜欢",
+      "font_class": "like-chose",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "11535181",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
       "icon_id": "5260051",
       "name": "加号",
       "font_class": "hao",

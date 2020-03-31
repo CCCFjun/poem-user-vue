@@ -36,3 +36,11 @@ export const reqGetNoticesList = () => ajax(BASE_URL + '/getNoticesList')
   我的页面顶部右侧管理员回复消息提醒数目
  */
 export const reqUnreadMsgCount = (userPhone) => ajax(BASE_URL + '/adminReplyCount', { userPhone })
+/*
+  请求登出
+ */
+export const reqLogout = () => ajax(BASE_URL + '/userLoginOut')
+/*
+  通过userPhone获取信息
+ */
+export const reqGetUserDetailByUserp = ({userPhone}) => ajax(BASE_URL + '/getUserDetailByUserp',{userPhone} )

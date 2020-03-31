@@ -21,8 +21,12 @@ import ExamDetail from '@/pages/Exam/ExamDetail.vue'
 import ExamStart from '@/pages/Exam/ExamStart.vue'
 import ExamAnswer from '@/pages/Exam/ExamAnswer.vue'
 import Forum from '@/pages/Forum/Forum.vue'
+import AddPost from '@/pages/Forum/AddPost.vue'
+import AddReplay from '@/pages/Forum/AddReplay.vue'
+import PostDetail from '@/pages/Forum/PostDetail.vue'
 import Profile from '@/pages/Mine/Profile.vue'
 import ProfileInfoChange from '@/pages/Mine/ProfileInfoChange.vue'
+import ProfileLike from '@/pages/Mine/ProfileLike.vue'
 import ProfilePswChange from '@/pages/Mine/ProfilePswChange.vue'
 import ProfileFeedback from '@/pages/Mine/ProfileFeedback.vue'
 import ProfileNotice from '@/pages/Mine/ProfileNotice.vue'
@@ -114,6 +118,18 @@ export default new VueRouter({
       }
     },
     {
+      path: '/forum/add/:labelId/:labelName',
+      component: AddPost
+    },
+    {
+      path: '/forum/detail/:pid/:userPhone',
+      component: PostDetail
+    },
+    {
+      path: '/forum/addReplay/:pid',
+      component: AddReplay
+    },
+    {
       path:'/profile',
       name:'Profile',
       component:Profile,
@@ -124,6 +140,10 @@ export default new VueRouter({
     {
       path:'/profile/pswchange',
       component:ProfilePswChange
+    },
+    {
+      path:'/profile/like',
+      component:ProfileLike
     },
     {
       path:'/profile/infochange',
@@ -157,5 +177,12 @@ export default new VueRouter({
     //   path:'/profile/replydetail',
     //   component:ProfileNotice
     // }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) { //切换页面时保持在顶部
+    if (savedPosition) {
+        return savedPosition
+    } else {
+        return { x: 0, y: 0 }
+    }
+  }
 })

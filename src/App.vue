@@ -80,10 +80,10 @@
       '$route' (to, from) {
         let isBack = this.$router.isBack;  //  监听路由变化时的状态为前进还是后退
         if (from.path === '/profile' && to.path === '/sea' || from.path === '/profile' && to.path === '/exam'
-          || from.path === '/profile' && to.path === '/today'
+          || from.path === '/profile' && to.path === '/today' || from.path === '/profile' && to.path === '/forum'
           || from.path === '/sea' && to.path === '/exam'
-          || from.path === '/sea' && to.path === '/today'
-          || from.path === '/exam' && to.path === '/today') {
+          || from.path === '/sea' && to.path === '/today' || from.path === '/sea' && to.path === '/forum'
+          || from.path === '/exam' && to.path === '/today' || from.path === '/exam' && to.path === '/forum') {
    /*       console.log(from.path);
           console.log(to.path);*/
           this.transitionName = 'slide-right'
@@ -119,7 +119,7 @@
         } else {
           if (JSON.parse(sessionStorage.getItem("userInfo"))) {
             // 实例化socket
-            this.socket = new WebSocket('ws://localhost:8080')
+            this.socket = new WebSocket('ws://localhost:8080/websocket/'+this.$store.state.userInfo.userPhone)
             // 监听socket连接
             this.socket.onopen = this.open
             // 监听socket错误信息
@@ -168,8 +168,6 @@
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus">
   // 整个应用组件的样式
   #app
-    width 100%
-    min-height 100vh
     background #fff
 /*    .v-enter
       opacity 0
@@ -181,8 +179,8 @@
     .v-enter-active,.v-leave-active
       transition all 0.5s ease*/
     .Router
-      position absolute
       width 100%
+      position absolute
       transition all .5s ease
     .slide-left-enter, .slide-right-leave-active
       opacity 0

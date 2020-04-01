@@ -16,7 +16,6 @@ import {
   INIT_FILLTWO_ANSWERS_LENGTH,
   NEXT_QUE,
   PREV_QUE,
-  CARD_QUE,
   RECORD_FIRST_CURRENT_TIME,
   RECORD_SINGLE_ANSWERS,
   RECORD_MULTIPLE_ANSWERS,
@@ -71,9 +70,6 @@ export default {
   },
   [PREV_QUE] (state) {
     state.currentIndex -= 1;
-  },
-  [CARD_QUE] (state, {index}) {
-    state.currentIndex = index - 1;
   },
   [RECORD_FIRST_CURRENT_TIME] (state, {firstCurrentTime}) {
     state.firstCurrentTime = firstCurrentTime;

@@ -94,7 +94,10 @@ export default {
       newUserPsw: "",
       newUserPswState: "",
       newUserPswConfirm: "",
-      newUserPswConfirmState: ""
+      newUserPswConfirmState: "",
+      mdnewUserPsw: "",
+      mdnewUserPswConfirm: "",
+      pswRtoL:""
     };
   },
   methods: {
@@ -161,6 +164,7 @@ export default {
     },
     // 异步用户登录
     async checkLogin() {
+      this.userPsw = this.$md5(this.userPsw)
       const { userPhone, userPsw } = this;
       let result = await reqLogin({ userPhone, userPsw });
       if (result.statu == 0) {
@@ -185,6 +189,9 @@ export default {
     },
     //异步学生注册
     async userRegister() {
+      this.pswRtoL = this.newUserPsw
+      this.newUserPsw = this.$md5(this.newUserPsw)
+      this.newUserPswConfirm = this.$md5(this.newUserPswConfirm)
       const { newUserName, newUserPhone, newUserPsw, newUserPswConfirm } = this;
       let result = await reqRegister({
         newUserName,
@@ -197,7 +204,7 @@ export default {
           action => {
             //点击确定按钮操作
             this.userPhone = this.newUserPhone;
-            this.userPsw = this.newUserPsw;
+            this.userPsw = this.pswRtoL;
             this.checkLogin();
           },
           () => {

@@ -7,29 +7,14 @@ import router from './router'
 import store from './store'
 import '../static/iconfont/iconfont.css'
 
-//按需引入Muse-UI组件
-// import { Radio, Checkbox, TextField, Button, Icon } from 'muse-ui';
-// // import 'muse-ui/lib/styles/base.less';
-// Vue.use(Radio);
-// Vue.use(Checkbox);
-// Vue.use(TextField);
-// Vue.use(Button);
-// Vue.use(Icon);
-// import 'muse-ui/lib/styles/theme.less';
-
-// import MuseUI from 'muse-ui';
-// import 'muse-ui/dist/muse-ui.css';
-// Vue.use(MuseUI);
+//md5加密
+import md5 from 'js-md5' 
+Vue.prototype.$md5 = md5
 
 //引入Vant组件
 /*import Popup from 'vant/lib/popup';
 import 'vant/lib/popup/style';
 Vue.use(Popup);*/
-
-/*// 引入VueLazyload插件
-import VueLazyload from 'vue-lazyload'
-// 将一张loading图片加载进来
-import loading from './common/imgs/loading.gif'*/
 
 //引入过滤器
 import './filters'

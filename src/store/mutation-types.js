@@ -16,7 +16,6 @@ export const INIT_FILLTWO_ANSWERS_LENGTH = 'init_fillTwo_answers_length' // 初�
 
 export const NEXT_QUE = 'next_que' //点击下一题
 export const PREV_QUE = 'prev_que' //点击上一题
-export const CARD_QUE = 'card_que' //点击答题卡序号
 export const RECORD_FIRST_CURRENT_TIME = 'record_first_current_time' //记录最先进入考试的开始时间
 
 export const RECORD_SINGLE_ANSWERS = 'record_single_answers' // 记录单选题答案到数组，第一个参数为数组下标，第二个参数为当前下标的值

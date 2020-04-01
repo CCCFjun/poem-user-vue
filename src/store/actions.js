@@ -26,7 +26,6 @@ import {
   RECORD_JUDGE_ANSWERS,
   RECORD_FILL_ANSWERS,
   RECORD_FILLTWO_ANSWERS,
-  CARD_QUE,
   REFRESH_CURRENT_INDEX,
   REFRESH_SINGLE_ANSWERS,
   REFRESH_MULTIPLE_ANSWERS, REFRESH_JUDGE_ANSWERS, REFRESH_FILL_ANSWERS,REFRESH_FILLTWO_ANSWERS, REFRESH_FIRST_CURRENT_TIME
@@ -98,10 +97,6 @@ export default {
   //点击上一题
   prevQue({commit}) {
     commit(PREV_QUE)
-  },
-  //点击答题卡序号
-  cardQue({commit}, index) {
-    commit(CARD_QUE, {index})
   },
   //记录当前花费时间
   recordFirstCurrentTime({commit}, firstCurrentTime) {

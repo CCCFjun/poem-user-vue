@@ -68,25 +68,9 @@
     },
     computed:{
       ...mapState(['userInfo']),
-      ...mapGetters(['unreadMsgCount'])
     },
     created(){
-      if (this.$store.state.userInfo.userPhone) {
-        //登录成功进入profile页面异步更新state李的examCalendar，防止进入首页来不及异步获取examCalendar控制台报undefined错误
-        // this.$store.dispatch('getExamCalendar',function () {
-        //   sessionStorage.setItem("examCalendar", JSON.stringify(self.$store.state.examCalendar));
-        // });
-        //获取未读消息条数
-        this.$store.dispatch('getUnreadMsgCount');
-        //登录成功获取反馈信息保存到vuex的state
-        let self = this;
-        //等待异步请求完数据后再执行向sessionStorage中存储数据
-        this.$store.dispatch('receiveFeedbackInfo', function () {
-          // console.log(this.$store.state.feedbackInfo)
-          sessionStorage.setItem("feedbackInfo", JSON.stringify(self.$store.state.feedbackInfo));
-        });
-        // sessionStorage.setItem("feedbackInfo",this.$store.state.feedbackInfo);
-      }
+
     },
     methods: {
       toggleSelect(){
@@ -99,13 +83,6 @@
           sessionStorage.clear();
           // 请求退出
           this.$store.dispatch('logout');
-          //清除vuex中feedbackInfo
-          this.$store.dispatch('recordFeedbackInfo', []);
-          //清除vuex中unreadMsgCount
-          this.$store.dispatch('resetUnreadMsgCount');
-          //清除vuex中examCalendar
-          // this.$store.dispatch('recordExamCalendar', []);
-          // sessionStorage.removeItem("feedbackInfo");
           Toast({
             message:'退出成功',
             duration: 1500

@@ -2,7 +2,7 @@
   <section class="fill_collection">
     <HeaderTop title="收藏题目详情">
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconfanhui"></i>
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
@@ -95,8 +95,7 @@
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
   .fill_collection
     width 90%
-    padding-top 45px
-    min-height 900px
+    padding-top 40px
     margin-left 5%
     .go_back
       width 40px
@@ -104,6 +103,7 @@
       display: flex;
       justify-content: space-between;
       margin-top 15px
+      font-size 16px
       .que_collect
         >img
           height 18px
@@ -130,4 +130,5 @@
           margin-top 10px
           >img
             height 120px
+            width 100%
 </style>

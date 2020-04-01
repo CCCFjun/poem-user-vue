@@ -60,12 +60,10 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 .add_post 
   width: 90%;
-  padding-top: 45px;
+  padding-top: 40px;
   margin-left 5%
   .post
-    margin-top 5%
     .mint-field
-      border-bottom 1px solid #ccc
       width 100%
       margin 0 auto
 </style>

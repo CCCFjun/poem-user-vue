@@ -33,7 +33,8 @@
     align-items center
     background-color #fff
     margin-top 6px
-    height 50px
+    height 40px
+    border-bottom 1px solid #EEE9E9
     &:active
       opacity 0.4
       background #e5e5e5
@@ -44,13 +45,13 @@
     .profile-item-left
       display flex
       align-items center
-      font-size 15px
+      font-size 14px
       i
-        font-size 25px
+        font-size 14px
         padding-left 10px
         padding-right 10px
         color #FFC125
     .profile-item-right
       .iconjiantou
-        font-size 25px
+        font-size 22px
 </style>

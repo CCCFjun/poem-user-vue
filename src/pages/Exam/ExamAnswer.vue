@@ -2,7 +2,7 @@
   <div class="wrong">
     <HeaderTop title="答题记录">
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
@@ -205,13 +205,13 @@
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
   .wrong
     width 90%
-    padding-top 45px
-    min-height 900px
+    padding-top 40px
     margin-left 5%
     .paper_container
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      font-size 14px
       .que
         border-bottom 1px solid #ccc
         display: flex;
@@ -260,4 +260,5 @@
             margin-top 10px
             >img
               height 120px
+              width 100%
 </style>

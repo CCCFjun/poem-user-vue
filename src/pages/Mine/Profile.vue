@@ -62,6 +62,7 @@
     data() {
       return {
         userPhone:this.$store.state.userInfo.userPhone,
+        userImgSrc:this.$store.state.userInfo.userImgSrc,
         userIntroduction:this.$store.state.userInfo.userIntroduction,
         isSelect:false
       }
@@ -117,10 +118,11 @@
   @import "../../common/stylus/mixins.styl"
   .profile
     width 100%
-    overflow hidden
-    padding-bottom 56px
+    padding-bottom 45px
+    background-color #EEE9E9
     .profile-number
-      margin-top 45.5px
+      margin-top 40px
+      background-color #fff
       &:active
         opacity 0.8
       .profile-link
@@ -128,56 +130,48 @@
         position relative
         display block
         padding 20px 10px
-        border-bottom 10px solid #EEE9E9
-        border-top 10px solid #EEE9E9
         .profile_image
           float left
-          width 60px
-          height 60px
+          width 50px
+          height 50px
           border-radius 10%
           overflow hidden
           vertical-align top
           img
             height 100%
             width 100%
-          .icon-yonghuming
-            background #e4e4e4
-            font-size 62px
         .user-info
           float left
           margin-top 8px
           margin-left 15px
           .user-info-top
             font-weight 700 
-            padding-bottom 18px
+            padding-bottom 10px
             color #000
             font-size 20px
           .user-info-bottom
-            padding-bottom 8px
             color #ccc
-            font-size 14px
-        .arrow
-          position absolute
-          right 15px
-          top 40%
-          .iconjiantou
-            color #000
-            font-size 30px
+            font-size 12px
     .profile-items
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top 10px
       .item_list
         width 100%
-        border-bottom 1px solid #ccc
+        height 40px
+        line-height 40px
+        border-bottom 1px solid #EEE9E9
       .kind_one
-        border-bottom 10px solid #EEE9E9
+        margin-bottom 14px
       .login_out
-        width 70%
-        height 50px
-        margin-top 20%
-        background-color #EEE9E9
+        width 100%
+        height 40px
+        margin-top 14%
+        border 1px solid #EEE9E9
+        background-color #fff
         display flex
         justify-content center
         align-items center
+        font-size 16px
 </style>

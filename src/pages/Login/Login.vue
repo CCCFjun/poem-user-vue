@@ -3,7 +3,7 @@
     <!--利用$router.back()返回上一级路由 -->
     <HeaderTop title="登录">
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
       <div class="header_message" slot="right">
         <span @click="toRegister">注册</span>

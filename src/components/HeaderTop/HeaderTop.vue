@@ -27,7 +27,7 @@ export default {
     left 0
     top 0
     width 100%
-    height 45px
+    height 40px
     .go_back
       width 18%
       height 100%
@@ -71,7 +71,7 @@ export default {
       color #000
       text-align center
       .header_title_text
-        font-size 20px
+        font-size 16px
         color #000
         display block
     .header_login
@@ -93,6 +93,7 @@ export default {
       top 50%
       transform translateY(-50%)
       color #000
+      font-size 14px
       .header_message_text
         .iconfont
           font-size 24px

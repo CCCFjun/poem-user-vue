@@ -98,32 +98,32 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .paper {
-  padding-top: 45px;
+  padding-top: 40px;
   width: 100%;
   background-color: #f5f5f5;
-  margin-bottom 50px
+  margin-bottom 45px
   .paper_list {
     width: 100%;
     display: flex;
     flex-direction: column;
     background-color: #fff;
     .item_border{
-      border-bottom: 1px solid #CDC9C9;
+      border-bottom: 1px solid #EEE9E9;
       .paper_list_item {
         display: flex;
         flex-direction: column;
         width: 86%;
         margin: 0 auto;
-        margin-top: 8px;
+        margin-top: 4px;
         .paper_title {
           height: 50px;
           line-height: 50px;
-          font-size: 16px;
+          font-size: 14px;
         }
         .paper_participate {
           height: 40px;
           line-height: 40px;
-          font-size: 14px;
+          font-size: 12px;
           color: #ccc;
           display: flex;
           justify-content: space-between;

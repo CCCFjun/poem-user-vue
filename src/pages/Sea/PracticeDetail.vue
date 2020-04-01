@@ -8,7 +8,7 @@
     <!--顶部标题栏-->
     <HeaderTop>
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
@@ -21,10 +21,6 @@
     </div>
     <!--点击试卷开始按钮-->
     <div class="paper_start">
-      <!-- <mt-button class="grey_buttom" @click.native="toStartPractice">开始练习</mt-button> -->
-      <!-- <mt-button class="grey_buttom" @click.native="toStartPractice">县试</mt-button>
-      <mt-button class="grey_buttom" @click.native="toStartPractice">府试</mt-button>
-      <mt-button class="grey_buttom" @click.native="toStartPractice">院试</mt-button> -->
       <img @click="toStartPractice(1)" src="@/common/imgs/layer.png" alt="">
       <img @click="toStartPractice(2)" src="@/common/imgs/layer2.png" alt="">
       <img @click="toStartPractice(3)" src="@/common/imgs/layer3.png" alt="">
@@ -102,7 +98,7 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .paper 
-  padding-top: 45px;
+  padding-top: 40px;
   padding-bottom: 20px;
   width: 100%;
   display: flex;
@@ -114,19 +110,12 @@ export default {
     text-align center
     margin-top 10px
     .kind_img
-      width 120px
-      height 120px
-      
-    .paper_name 
-      color: #8B8989;
-      padding-left: 12px;
-      height: 30px;
-      line-height: 30px;
-
+      width 100px
+      height 100px
     .paper_intro 
       color: #8B8989;
-      padding-left: 12px;
-      line-height: 30px;
+      font-size 12px
+      line-height: 24px;
 
   .paper_start 
     margin-top 30px
@@ -136,12 +125,4 @@ export default {
     align-items: center;
     >img 
       margin-top 16px
-    .grey_buttom 
-      background-color: #ccc;
-      margin-top: 15px;
-      margin-bottom: 15px;
-      color: #fff;
-      border-radius: 45%;
-      width: 120px;
-
 </style>

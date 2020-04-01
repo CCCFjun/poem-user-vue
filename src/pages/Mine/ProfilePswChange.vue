@@ -3,7 +3,7 @@
     <!--利用$router.back()返回上一级路由 -->
     <HeaderTop title="密码修改">
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
@@ -61,20 +61,18 @@
 
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
   .profile_psw_change
-    padding-top: 45px;
+    padding-top: 40px;
+    width 100%
+    display: flex;
+    justify-content: center;
     .profile_psw_change_field
-      width: 90%;
       margin-top 10%
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
       .mint-button
         background-color: #fff;
         margin-top: 15px;
         margin-bottom: 15px;
         color: #B22222;
         border: 1px solid #B22222;
-        width: 70%;
+
     
 </style>

@@ -178,12 +178,12 @@ export default {
 .judge_collection 
   width: 90%;
   padding-top: 45px;
-  min-height: 900px;
   margin-left: 5%;
   .go_back 
     width: 40px
   .que 
     .content 
+      font-size 16px
       height: 24px;
       line-height: 24px;
       z-index 2

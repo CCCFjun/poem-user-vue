@@ -1,16 +1,16 @@
 <template>
-  <section class="exam_calendar">
+  <section class="user_notice">
     <!--利用$router.back()返回上一级路由 -->
     <HeaderTop title="通知">
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
-    <div class="exam_calendar_detail" v-if="noticeList.length">
-      <ul class="exam_calendar_detail_ul" v-for="(item, index) in noticeList" :key="index">
-        <li class="exam_calendar_time_li">
-          <span class="exam_calendar_time">发布时间：{{item.noticeCreateTime | date-format}}</span>
+    <div class="user_notice_detail" v-if="noticeList.length">
+      <ul class="user_notice_detail_ul" v-for="(item, index) in noticeList" :key="index">
+        <li class="user_notice_time_li">
+          <span class="user_notice_time">发布时间：{{item.noticeCreateTime | date-format}}</span>
         </li>
         <li class="message_li">
           <viewer>
@@ -34,8 +34,8 @@
       </div>
     </div>
 
-    <div v-else class="no_exam_calendar_detail">
-      <div class="no_exam_calendar_detail_text">暂无通知</div>
+    <div v-else class="no_user_notice_detail">
+      <div class="no_user_notice_detail_text">暂无通知</div>
     </div>
   </section>
 </template>
@@ -85,11 +85,12 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 @import '../../common/stylus/mixins.styl';
 
-.exam_calendar {
-  padding-top: 45px;
-
-  .no_exam_calendar_detail {
-    .no_exam_calendar_detail_text {
+.user_notice {
+  padding-top: 40px;
+  background-color: #f5f5f5;
+  height 100%
+  .no_user_notice_detail {
+    .no_user_notice_detail_text {
       width: 100%;
       height: 50px;
       display: flex;
@@ -100,22 +101,22 @@ export default {
     }
   }
 
-  .exam_calendar_detail {
+  .user_notice_detail {
     list-style: none;
-    background-color: #f5f5f5;
+    
     padding-bottom: 20px;
 
-    .exam_calendar_detail_ul {
+    .user_notice_detail_ul {
       padding: 8px;
-      font-size: 18px;
+      font-size: 16px;
 
-      .exam_calendar_time_li {
+      .user_notice_time_li {
         width: 100%;
         display: flex;
         justify-content: center;
-        padding-top: 15px;
+        padding-top: 14px;
 
-        .exam_calendar_time {
+        .user_notice_time {
           display: inline-block;
           padding: 5px;
           color: #8c8c8c;
@@ -137,8 +138,8 @@ export default {
       }
 
       img {
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
         border-radius: 25px;
       }
 

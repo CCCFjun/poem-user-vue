@@ -177,7 +177,10 @@ export default {
       }
     },
     loadTop() {
-      
+      this.getPostList()
+      setTimeout(() => {
+        this.$refs.loadmore.onTopLoaded()
+      }, 1000)
     },
     toPostDetail(pid, userPhone) {
       if (!this.$store.state.userInfo.userPhone) {
@@ -215,43 +218,22 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .posts {
-  padding-top: 45px;
-
-  .add_post {
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    bottom: 16%;
-    right: 10%;
-    background-color: #FF0000;
-    border-radius: 50%;
-    z-index: 999;
-
-    .iconfont {
-      display: inline-block;
-      color: #fff;
-      margin-left: 15px;
-      margin-top: 15px;
-      font-size: 20px;
-    }
-  }
-
+  padding-top: 40px;
   .label_container {
-    margin-top: 10px;
     width: 90%;
     margin-left: 5%;
-    margin-bottom 50px
+    margin-bottom 45px
     .post_list {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #EEE9E9;
       margin-top 10px
       letter-spacing 1px
-      font-size: 18px;
-      line-height 22px
+      font-size: 16px;
+      line-height 18px
       .user_info{
         display: flex;
         img{
-          width 60px
-          height 60px
+          width 30px
+          height 30px
           border-radius 10%
         }
         .name_time{
@@ -259,33 +241,39 @@ export default {
           flex-direction: column
           justify-content: space-around
           padding-left 20px
-          height 60px
+          height 30px
           .user_name{
-            font-size 18px
+            font-size 12px
           }
           .user_time{
             color #8B8989
-            font-size 14px
+            font-size 10px
           }
         }
       }
       .post_title{
-        margin-top 20px
-        font-size 22px
+        margin-top 10px
+        font-size 14px
         font-weight bold
       }
       .post_content{
-        margin-top 20px
+        margin-top 10px
+        font-size 13px
+        font-weight 400
       }
       .post_opt{
-        margin 20px 0
+        margin 10px 0
         .iconfont{
-          font-size 22px
+          font-size 14px
           color #8B8989
         }
         .icon-like-chose{
           color #ff0000
         }
+        span{
+          font-size 12px
+        }
+          
       }
     }
     

@@ -78,7 +78,7 @@
     bottom 0
     background-color #fff
     width 100%
-    height 50px
+    height 45px
     display flex
     box-shadow 0px 0px 1px rgba(0,0,0,.5)
     .guide_item
@@ -96,5 +96,5 @@
         margin-top 2px
         margin-bottom 2px
         .iconfont
-          font-size 22px
+          font-size 18px
 </style>

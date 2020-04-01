@@ -100,30 +100,23 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .practice 
-  padding-top: 45px;
+  padding-top: 40px;
   width: 100%;
-  margin-bottom 50px
+  margin-bottom 45px
   background-color #f5f5f5
   .kind_list
     margin-top 20px 
     background-color #EED8AE
     .kind_list_item  
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       width 50%
       float left
       text-align center
       .kind_title 
-        height: 50px;
-        line-height: 50px;
-        font-size: 16px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
       .kind_img 
-        height: 120px;   
-        width 120px   
-      .icon_kind 
-        border: 1px solid #B22222;
-        border-radius: 36%;
-        padding: 3px 8px;
-        color: #B22222;
-        margin-right: 10px;
-      
+        height: 100px;   
+        width 100px      
 </style>

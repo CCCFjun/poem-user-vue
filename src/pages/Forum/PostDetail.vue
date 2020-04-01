@@ -2,7 +2,7 @@
   <section class="post_detail">
     <HeaderTop>
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
     <div class="detail">
@@ -21,22 +21,27 @@
         </div>
       </div>
       <div class="post_title">{{title}}</div>
-      <div class="post_content"><pre>{{content}}</pre></div>
+      <div class="post_content">
+        <pre>{{content}}</pre>
+      </div>
     </div>
 
     <div class="replay_list" v-for="item in replayList" :key="item.rid">
-        <div class="user_img">
-          <img
-            :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('@/common/imgs/profile.jpg')"
-            alt="用户头像"
-          />
+      <div class="user_info">
+      <div class="user_img">
+        <img
+          :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('@/common/imgs/profile.jpg')"
+          alt="用户头像"
+        />
+      </div>
+      <div class="name_time">
+        <p class="user_name">{{item.userInfo[0].userName}}</p>
+        <div class="post_content">
+          <pre>{{item.content}}</pre>
         </div>
-        <div class="replay_right">
-          <div class="user_name">{{item.userInfo[0].userName}}</div>
-          <div class="post_content"><pre>{{item.content}}</pre></div>
-          <div class="user_time">{{item.initTime | date-format}}</div>
-        </div>
-      
+        <p class="user_time">{{item.initTime | date-format}}</p>
+      </div>
+      </div>
     </div>
     <div class="add_replay" @click="toAddReplay">
       <i class="iconfont icon-xiaoxi"></i>
@@ -119,21 +124,23 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 .post_detail {
   width: 90%;
-  padding-top: 45px;
+  padding-top: 40px;
   margin-left: 5%;
+  margin-bottom: 45px;
 
-  .detail{
-    border-bottom: 1px solid #ccc;
+  .detail {
+    border-bottom: 1px solid #EEE9E9;
     margin-top: 10px;
     letter-spacing: 1px;
     font-size: 18px;
-    line-height 22px
+    line-height: 22px;
+
     .user_info {
       display: flex;
 
       img {
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
         border-radius: 10%;
       }
 
@@ -142,66 +149,77 @@ export default {
         flex-direction: column;
         justify-content: space-around;
         padding-left: 20px;
+        height: 30px;
 
         .user_name {
-          font-size: 18px;
+          font-size: 12px;
         }
 
         .user_time {
           color: #8B8989;
-          font-size: 14px;
+          font-size: 10px;
         }
       }
     }
 
     .post_title {
-      margin-top: 20px;
-      font-size: 22px;
+      margin-top: 10px;
+      font-size: 14px;
       font-weight: bold;
     }
 
     .post_content {
-      margin: 20px 0;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 400;
     }
   }
-  .replay_list{
-    border-bottom: 1px solid #ccc;
+
+  .replay_list {
+    border-bottom: 1px solid #EEE9E9;
     margin-top: 10px;
     letter-spacing: 1px;
-    display: flex;
+
+    .user_info {
+      display: flex;
+
       img {
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         border-radius: 10%;
       }
 
-      .replay_right {
-        font-size: 18px;
-        margin-left 20px
-        line-height 30px
-        .user_name{
+      .name_time {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+
+        .user_name {
+          font-size: 12px;
           color: #8B8989;
-          font-size: 14px;
         }
-        .user_time{
+        .post_content{
+          margin-top 12px
+          font-size: 13px;
+        }
+        .user_time {
           color: #8B8989;
-          font-size: 14px;
+          margin 12px 0
+          font-size: 10px;
         }
       }
-      
-    
-
-    
+    }
   }
 
   .add_replay {
-    height: 50px;
+    height: 45px;
     width: 100%;
-    line-height: 50px;
+    line-height: 45px;
     position: fixed;
     bottom: 0;
     left: 0;
     border-top: 1px solid #ccc;
+    background-color: #fff;
 
     .iconfont {
       margin-left: 5%;
@@ -211,6 +229,7 @@ export default {
     span {
       margin-left: 5%;
       color: #8B8989;
+      font-size 13px
     }
   }
 }

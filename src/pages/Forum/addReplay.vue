@@ -57,7 +57,7 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 .add_replay 
   width: 90%;
-  padding-top: 45px;
+  padding-top: 40px;
   margin-left 5%
   .post
     margin-top 5%

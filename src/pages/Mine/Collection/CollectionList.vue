@@ -3,7 +3,7 @@
     <!--利用$router.back()返回上一级路由 -->
     <HeaderTop title="收藏题目">
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
@@ -157,7 +157,7 @@
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
   @import '~@/common/stylus/mixins.styl'
   .wrong_collection
-    padding-top 45px
+    margin-top 40px
     width 100%
     height 100%
     background-color #f5f5f5
@@ -171,6 +171,4 @@
       >h3
         font-size 17px
         color #6a6a6a
-    .collections_list
-      padding-bottom 6px
 </style>

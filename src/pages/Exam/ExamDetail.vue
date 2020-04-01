@@ -8,7 +8,7 @@
     <!--顶部标题栏-->
     <HeaderTop>
       <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>返回
+        <i class="iconfont iconxiazai6"></i>
       </a>
     </HeaderTop>
 
@@ -19,31 +19,30 @@
     </div>
 
     <div class="my_score" v-if="currentPaperStatus == 1" @click="toExamAnswer(paperId)">
-      <div class="profile_image">
-        <img
-          :src="userImgSrc ? userImgSrc : require('../../common/imgs/profile.jpg')"
-          alt="用户头像"
-        />
-      </div>
-      <div class="user-info">
-        <p class="user-info-top">{{userName}}</p>
-        <p class="user-info-bottom">
-          <span>答对{{correctCount}}题&nbsp;&nbsp;&nbsp;用时{{usedTime}}秒</span>
-        </p>
+      <div class="user_info">
+        <div class="user_img">
+          <img :src="userImgSrc ? userImgSrc : require('../../common/imgs/profile.jpg')" alt="用户头像" />
+        </div>
+        <div class="name_time">
+          <p class="user_name">{{userName}}</p>
+          <p class="user_time">
+            <span>答对{{correctCount}}题&nbsp;&nbsp;&nbsp;用时{{usedTime}}秒</span>
+          </p>
+        </div>
       </div>
     </div>
 
     <div class="score_list" v-if="scoreList == 1">
-      <div class="score_list_item" v-for="(item,index) in scoreListInfo" :key="index">
-        <div class="profile_image">
+      <div class="user_info" v-for="(item,index) in scoreListInfo" :key="index">
+        <div class="user_img">
           <img
             :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('../../common/imgs/profile.jpg')"
             alt="用户头像"
           />
         </div>
-        <div class="user-info">
-          <p class="user-info-top">{{item.userInfo[0].userName}}</p>
-          <p class="user-info-bottom">
+        <div class="name_time">
+          <p class="user_name">{{item.userInfo[0].userName}}</p>
+          <p class="user_time">
             <span>答对{{item.score}}题&nbsp;&nbsp;&nbsp;用时{{item.timeUsed/1000}}秒</span>
           </p>
         </div>
@@ -64,7 +63,11 @@
 </template>
 
 <script>
-import { reqPapersInfoByPaperId, reqCurrentPaperStatus, reqScoreList } from "@/api/exam";
+import {
+  reqPapersInfoByPaperId,
+  reqCurrentPaperStatus,
+  reqScoreList
+} from "@/api/exam";
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 import Star from "../../components/Star/Star.vue";
 import { Toast, MessageBox, Indicator } from "mint-ui";
@@ -77,15 +80,15 @@ export default {
       userName: this.$store.state.userInfo.userName,
       paperId: this.$route.params.paperId,
       paperInfo: {},
-      paperDetail: '',
+      paperDetail: "",
       queNumInfo: {},
       currentPaperStatus: 0,
       loading: false,
       usedTime: 0,
       correctCount: 0,
-      userImgSrc:"",
+      userImgSrc: "",
       scoreList: 0,
-      scoreListInfo:{}
+      scoreListInfo: {}
     };
   },
   created() {
@@ -104,7 +107,7 @@ export default {
         // hoverStop: false
       };
     },
-    ...mapState(["examCalendar"]),
+    ...mapState(["examCalendar"])
   },
   methods: {
     // 通过paperId获取试卷详情信息
@@ -114,15 +117,23 @@ export default {
       if (result.statu === 0) {
         this.paperInfo = result.data.paperInfo;
         this.queNumInfo = result.data.queNumInfo;
-        if(this.paperInfo.paperType == 1){
-          this.paperDetail = `随机出题。总共${this.queNumInfo.totalNum}题，每道题时间为20秒。`
-        }else{
-          this.paperDetail = `固定出题。总共${this.queNumInfo.totalNum}题，每道题时间为20秒。`
+        if (this.paperInfo.paperType == 1) {
+          this.paperDetail = `随机出题。总共${this.queNumInfo.totalNum}题，每道题时间为20秒。`;
+        } else {
+          this.paperDetail = `固定出题。总共${this.queNumInfo.totalNum}题，每道题时间为20秒。`;
         }
-        if(this.queNumInfo.singleNum != 0){ this.paperDetail += `${this.queNumInfo.singleNum}道单选题，`}
-        if(this.queNumInfo.judgeNum != 0){ this.paperDetail += `${this.queNumInfo.judgeNum}道判断题，`}
-        if(this.queNumInfo.fillNum != 0){ this.paperDetail += `${this.queNumInfo.fillNum}道填写上下句，`}
-        if(this.queNumInfo.fillTwoNum != 0){ this.paperDetail += `${this.queNumInfo.fillTwoNum}道看图猜诗。`}
+        if (this.queNumInfo.singleNum != 0) {
+          this.paperDetail += `${this.queNumInfo.singleNum}道单选题，`;
+        }
+        if (this.queNumInfo.judgeNum != 0) {
+          this.paperDetail += `${this.queNumInfo.judgeNum}道判断题，`;
+        }
+        if (this.queNumInfo.fillNum != 0) {
+          this.paperDetail += `${this.queNumInfo.fillNum}道填写上下句，`;
+        }
+        if (this.queNumInfo.fillTwoNum != 0) {
+          this.paperDetail += `${this.queNumInfo.fillTwoNum}道看图猜诗。`;
+        }
       } else {
         Toast({
           message: result.msg,
@@ -141,7 +152,7 @@ export default {
         this.userImgSrc = this.$store.state.userInfo.userImgSrc;
         this.scoreList = 1;
         let item = await reqScoreList({ paperId });
-        this.scoreListInfo = item.data
+        this.scoreListInfo = item.data;
       } else {
         //展示按钮
         this.currentPaperStatus = 0;
@@ -162,27 +173,27 @@ export default {
         }
       );
     },
-    toExamAnswer(paperId){
-      this.$router.push('/exam/detail/answer/' + paperId)
+    toExamAnswer(paperId) {
+      this.$router.push("/exam/detail/answer/" + paperId);
     }
   },
   components: {
     HeaderTop,
     Star
   },
-  filters:{
-    filterCall(value){
-      let msg
-      if(value == 0){
-        msg = "状元"
-      }else if(value == 1){
-        msg = "榜眼"
-      }else if(value == 2){
-        msg = "探花"
-      }else{
-        msg = "进士"
+  filters: {
+    filterCall(value) {
+      let msg;
+      if (value == 0) {
+        msg = "状元";
+      } else if (value == 1) {
+        msg = "榜眼";
+      } else if (value == 2) {
+        msg = "探花";
+      } else {
+        msg = "进士";
       }
-      return msg
+      return msg;
     }
   }
 };
@@ -192,11 +203,12 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .paper {
-  padding-top: 45px;
+  padding-top: 40px;
   padding-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
+
   .paper_info {
     width: 100%;
     border-bottom: 8px solid #EEE9E9;
@@ -204,96 +216,99 @@ export default {
 
     .paper_src {
       width: 100%;
-      height: 120px;
+      height: 140px;
     }
 
-    .paper_name
-    .paper_intro {
+    .paper_name, .paper_intro {
       color: #8B8989;
+      font-size: 14px;
       padding-left: 12px;
-      line-height: 30px;
+      line-height: 24px;
     }
   }
 
   .my_score {
-    border-bottom 16px solid #EEE9E9
-    clearFix()
-    position relative
-    display block
-    padding 10px 10px
-    .profile_image {
-      float left
-      width 60px
-      height 60px
-      border-radius 10%
-      overflow hidden
-      vertical-align top
-    }
-    .user-info {
-      float left
-      margin-top 8px
-      margin-left 15px
-      p {
-        font-weight: 700
-        font-size 18px
-        &.user-info-top {
-          padding-bottom 18px
+    border-bottom: 8px solid #EEE9E9;
+    clearFix();
+    position: relative;
+    display: block;
+    padding: 10px 10px;
+
+    .user_info {
+      display: flex;
+
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 10%;
+      }
+
+      .name_time {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-left: 20px;
+        height: 45px;
+
+        .user_name {
+          font-size: 16px;
+          font-weight 600
         }
-        &.user-info-bottom {
-          color #8B8989
-          font-size 14px
+
+        .user_time {
+          color: #8B8989;
+          font-size: 12px;
         }
       }
     }
   }
-  .score_list{
-    .score_list_item{
+
+  .score_list {
+    .user_info {
+      display: flex;
+      justify-content: space-around
+      padding: 10px 10px;
       border-bottom 1px solid #EEE9E9
-      clearFix()
-      position relative
-      display block
-      padding 10px 10px
-      .profile_image {
-        float left
-        width 60px
-        height 60px
-        border-radius 10%
-        overflow hidden
-        vertical-align top
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 10%;
       }
-      .user-info {
-        float left
-        margin-top 8px
-        margin-left 15px
-        p {
-          font-weight: 700
-          font-size 18px
-          &.user-info-top {
-            padding-bottom 18px
-          }
-          &.user-info-bottom {
-            color #8B8989
-            font-size 14px
-          }
+
+      .name_time {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 45px;
+
+        .user_name {
+          font-size: 16px;
+          font-weight 600
+        }
+
+        .user_time {
+          color: #8B8989;
+          font-size: 12px;
         }
       }
-      .user_call{
-        float right
-        margin-top 8px
-        margin-right 15px
+      .user_call {
+        margin-right 20px
+        font-size 16px
         .call_red {
-          color #ff0000
+          color: #ff0000;
         }
+
         .call_grey {
-          color #8B8989
+          color: #8B8989;
         }
       }
     }
   }
+
   .paper_start {
     position: fixed;
     bottom: 30px;
-    left: 36%;
+    margin-left 37%
     z-index: 100;
 
     .grey_buttom {

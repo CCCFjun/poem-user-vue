@@ -1,6 +1,6 @@
 import ajax from './ajax'
-// const BASE_URL = "/api/user"
-const BASE_URL = "http://101.37.13.111:8085/api/user"
+const BASE_URL = "/api/user"
+// const BASE_URL = "http://101.37.13.111:8085/api/user"
 
 /*
   获取帖子类型列表

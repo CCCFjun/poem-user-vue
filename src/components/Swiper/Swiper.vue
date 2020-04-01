@@ -24,10 +24,10 @@
   img
     height 100%
   .mint-swipe
-    height 180px
+    height 140px
     .mint-swipe-item
       text-align center
       .full
         width 100%
-        height 180px
+        height 140px
 </style>

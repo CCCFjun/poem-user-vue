@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import '../static/iconfont/iconfont.css'
+import '../static/js/flexible.js'
 
 //md5加密
 import md5 from 'js-md5' 

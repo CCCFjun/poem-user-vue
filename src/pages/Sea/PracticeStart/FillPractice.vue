@@ -183,19 +183,20 @@ export default {
 <style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
 .fill_collection 
   width: 90%;
-  padding-top: 45px;
-  min-height: 900px;
+  padding-top: 40px;
   margin-left: 5%;
   .go_back 
     width: 40px;
   .que 
     .content 
+      font-size 16px 
       height: 24px;
       line-height: 24px;
       text-align center
       > span 
         display: block;  
-          
+      img 
+        height 140px
       .que_ans 
         margin-top 30px;
         .iconfont 
@@ -203,9 +204,7 @@ export default {
         .icon-gou1 
           color: #00CD66;
         .icon-cha 
-          color: #FF0000;    
-      .que_content 
-        line-height: 30px;   
+          color: #FF0000;      
       .fill_option 
         margin-top: 25px;
         margin-bottom: 25px;

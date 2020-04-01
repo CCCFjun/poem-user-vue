@@ -667,7 +667,7 @@ export default {
 .paper {
   width: 100%;
   height: 800px;
-  padding-top: 45px;
+  padding-top: 40px;
 
   .paper_sub_title_second {
     width: 100%;
@@ -695,7 +695,7 @@ export default {
     width: 90%;
     margin: 15px auto;
     margin-bottom: 15px;
-
+    font-size 16px
     .que {
       .content {
         height: 24px;

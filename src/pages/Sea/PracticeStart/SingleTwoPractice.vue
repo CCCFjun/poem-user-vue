@@ -197,7 +197,6 @@ export default {
 .single_collection {
   width: 90%;
   padding-top: 45px;
-  min-height: 900px;
   margin-left: 5%;
 
   .go_back {
@@ -216,6 +215,7 @@ export default {
     .content {
       height: 24px;
       line-height: 24px;
+      font-size 16px
       text-align center
       > span {
         display: block;

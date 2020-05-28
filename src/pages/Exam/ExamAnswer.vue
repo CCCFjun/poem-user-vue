@@ -20,7 +20,6 @@
         </div>
         <div class="que_collect">
           <img :src="item.isCollect == '0' ? require('../../common/imgs/no-collect.png') : require('../../common/imgs/yes-collect.png')" @click="clickCollect(item.isCollect,index, item.answerId)"/>
-          <!-- <mt-buttom @click="clickCollect(item.isCollect,index, item.answerId)">{{item.isCollect}}</mt-buttom> -->
         </div>  
       </section>
 

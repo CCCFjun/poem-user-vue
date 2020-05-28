@@ -174,11 +174,8 @@ export default {
           iconClass: "iconfont iconunie045",
           duration: 1500
         });
-        //将数据存储到sessionStorage中，防止刷新页面自动退出
         sessionStorage.setItem("userInfo", JSON.stringify(user));
-        // 将user保存到vuex的state
         this.$store.dispatch("recordUser", user);
-        // 去个人中心界面
         this.$router.replace("/profile");
       } else {
         Toast({

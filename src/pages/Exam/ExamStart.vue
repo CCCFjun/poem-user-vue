@@ -425,23 +425,23 @@ export default {
       });
       if (result.statu == 0) {
         //交卷成功
-        /*//清除sessionStorage数据
+        //清除sessionStorage数据
           sessionStorage.removeItem("currentIndex");
           sessionStorage.removeItem("singleAnswers");
-          sessionStorage.removeItem("multipleAnswers");
-          sessionStorage.removeItem("judgeAnswers");
+          // sessionStorage.removeItem("multipleAnswers");
           sessionStorage.removeItem("judgeAnswers");
           sessionStorage.removeItem("fillAnswers");
+          sessionStorage.removeItem("fillTwoAnswers");
           sessionStorage.removeItem("firstCurrentTime");
           sessionStorage.removeItem("sno" + this.sno + "paperId" + this.paperId, result.msg);
           //清除vuex数据
           this.refreshCurrentIndex(0);
           this.refreshSingleAnswers([]);
-          this.refreshMultipleAnswers([]);
+          // this.refreshMultipleAnswers([]);
           this.refreshJudgeAnswers([]);
           this.refreshFillAnswers([]);
           this.refreshFillTwoAnswers([]);
-          this.refreshFirstCurrentTime(0);*/
+          this.refreshFirstCurrentTime(0);
         // this.$router.replace("/exam/detail/" + this.paperId);
         return true;
       } else {
@@ -602,7 +602,7 @@ export default {
           this.fillTwoAnswer = currentAnswer;
         } else {
           const { currentIndex, fillTwoAnswer } = this;
-          this.recordFillAnswers({ currentIndex, fillTwoAnswer });
+          this.recordFillTwoAnswers({ currentIndex, fillTwoAnswer });
         }
       }
     }

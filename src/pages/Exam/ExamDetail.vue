@@ -208,7 +208,7 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-
+  justify-content: center
   .paper_info {
     width: 100%;
     border-bottom: 8px solid #EEE9E9;
@@ -308,9 +308,10 @@ export default {
   .paper_start {
     position: fixed;
     bottom: 30px;
-    margin-left 37%
     z-index: 100;
-
+    width 120px
+    margin-left 50%
+    left -60px
     .grey_buttom {
       background-color: #ccc;
       margin-top: 15px;

@@ -16,6 +16,9 @@ Vue.prototype.$md5 = md5
 /*import Popup from 'vant/lib/popup';
 import 'vant/lib/popup/style';
 Vue.use(Popup);*/
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
 
 //引入过滤器
 import './filters'

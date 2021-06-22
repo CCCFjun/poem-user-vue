@@ -1,72 +1,92 @@
 <template>
-  <section class="login-container">
+  <section class="register">
     <!--利用$router.back()返回上一级路由 -->
-    <HeaderTop title="登录">
-      <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
+    <!-- <HeaderTop title="登录">
+      <a
+        href="javascript:"
+        slot="left"
+        class="go_back"
+        @click="$router.goBack()"
+      >
         <i class="iconfont iconxiazai6"></i>
       </a>
-      <div class="header_message" slot="right">
-        <span @click="toRegister">注册</span>
+    </HeaderTop> -->
+    <van-nav-bar
+  title="登录"
+  left-text=""
+  left-arrow
+  @click-left="$router.goBack()"
+/>
+
+    <div class="register-1">
+      <img src="../../common/imgs/adminlogo.png" alt />
+    </div>
+    <!-- 登录 -->
+    <div v-show="showLogin">
+      <div class="register-2">
+        <van-cell-group>
+          <van-field
+            v-model="userPhone"
+            label="账号"
+            :right-icon="phoneState"
+            @blur.native.capture="checkUserPhone"
+          />
+          <van-field
+            v-model="userPsw"
+            clearable
+            label="密码"
+            :right-icon="pswState"
+            @blur.native.capture="checkPsw"
+            @keyup.enter.native="checkLogin"
+          />
+        </van-cell-group>
       </div>
-    </HeaderTop>
-
-    <!--实现登录功能-->
-    <!--<transition name="el-fade-in">-->
-    <div class="login-wrap" v-show="showLogin">
-      <mt-field
-        placeholder="    手机号码"
-        v-model="userPhone"
-        :state="phoneState"
-        @blur.native.capture="checkUserPhone"
-      />
-      <mt-field
-        placeholder="    密码"
-        type="password"
-        v-model="userPsw"
-        :state="pswState"
-        @blur.native.capture="checkPsw"
-        @keyup.enter.native="checkLogin"
-      />
-      <mt-button type="primary" size="large" @click.native="checkLogin">登录</mt-button>
-
-      <div class="toggle-login">
-        <!-- <span @click="toRegister">没有账号？马上注册</span> -->
-        <!-- <span @click="toFindPsw">忘记密码？</span> -->
+      <div class="register-3">
+        <van-button class="btn" @click="checkLogin">登陆</van-button>
+      </div>
+      <div class="register-3">
+        <van-button class="btn" @click="toRegister">注册</van-button>
       </div>
     </div>
-    <!--</transition>-->
-
-    <!--实现注册功能-->
-    <!--<transition name="el-fade-in">-->
+    <!--注册-->
     <div class="login-wrap" v-show="showRegister">
-      <mt-field
-        placeholder="       请输入昵称"
-        v-model="newUserName"
-        :state="newUserNameState"
-        @blur.native.capture="checkNewName"
-      />
-      <mt-field
-        placeholder="       请输入手机号"
-        v-model="newUserPhone"
-        :state="newUserPhoneState"
-        @blur.native.capture="checkNewUserPhone"
-      />
-      <mt-field
-        placeholder="       请输入至少6位数字密码"
-        type="password"
-        v-model="newUserPsw"
-        :state="newUserPswState"
-        @blur.native.capture="checkNewUserPsw"
-      />
-      <mt-field
-        placeholder="       请再次输入密码"
-        type="password"
-        v-model="newUserPswConfirm"
-        :state="newUserPswConfirmState"
-        @blur.native.capture="checkNewUserPswConfirm"
-      />
-      <mt-button type="primary" size="large" @click.native="userRegister">注册</mt-button>
-      <div class="toggle-register">
+      <div class="register-2">
+      <van-cell-group>
+        <van-field
+          v-model="newUserName"
+          placeholder="请输入昵称"
+          :right-icon="newUserNameState"
+          @blur.native.capture="checkNewName"
+        />
+        <van-field
+          v-model="newUserPhone"
+          clearable
+          placeholder="请输入手机号"
+          :state="newUserPhoneState"
+          @blur.native.capture="checkNewUserPhone"
+        />
+        <van-field
+          clearable
+          placeholder="请输入至少6位数字密码"
+          type="password"
+          v-model="newUserPsw"
+          :state="newUserPswState"
+          @blur.native.capture="checkNewUserPsw"
+        />
+        <van-field
+          clearable
+          placeholder="请再次输入密码"
+          type="password"
+          v-model="newUserPswConfirm"
+          :state="newUserPswConfirmState"
+          @blur.native.capture="checkNewUserPswConfirm"
+        />
+      </van-cell-group>
+      </div>
+      <div class="register-3">
+        <van-button class="btn" @click="userRegister">注册</van-button>
+      </div>
+      <div class="toggle-register login-tip">
         <span @click="toLogin">已有账号？马上登录</span>
       </div>
     </div>
@@ -97,7 +117,7 @@ export default {
       newUserPswConfirmState: "",
       mdnewUserPsw: "",
       mdnewUserPswConfirm: "",
-      pswRtoL:""
+      pswRtoL: "",
     };
   },
   methods: {
@@ -105,10 +125,13 @@ export default {
     checkUserPhone() {
       if (this.userPhone === "") {
         this.phoneState = "";
-      } else if (!/^\d{11}$/.test(this.userPhone)) {
-        this.phoneState = "error";
+      } else if (
+        !/^1[3-9]\d{9}$/.test(this.userPhone) ||
+        this.userPhone.length < 11
+      ) {
+        this.phoneState = "close";
       } else {
-        this.phoneState = "success";
+        this.phoneState = "passed";
       }
     },
     // 登录校验密码
@@ -116,9 +139,9 @@ export default {
       if (this.userPhone === "") {
         this.pswState = "";
       } else if (this.userPsw.length < 6) {
-        this.pswState = "error";
+        this.pswState = "close";
       } else {
-        this.pswState = "success";
+        this.pswState = "passed";
       }
     },
     // 注册校验手机号
@@ -164,7 +187,7 @@ export default {
     },
     // 异步用户登录
     async checkLogin() {
-      this.userPsw = this.$md5(this.userPsw)
+      this.userPsw = this.$md5(this.userPsw);
       const { userPhone, userPsw } = this;
       let result = await reqLogin({ userPhone, userPsw });
       if (result.statu == 0) {
@@ -172,7 +195,7 @@ export default {
         Toast({
           message: "登录成功",
           iconClass: "iconfont iconunie045",
-          duration: 1500
+          duration: 1500,
         });
         sessionStorage.setItem("userInfo", JSON.stringify(user));
         this.$store.dispatch("recordUser", user);
@@ -180,25 +203,25 @@ export default {
       } else {
         Toast({
           message: result.msg,
-          duration: 1500
+          duration: 1500,
         });
       }
     },
     //异步学生注册
     async userRegister() {
-      this.pswRtoL = this.newUserPsw
-      this.newUserPsw = this.$md5(this.newUserPsw)
-      this.newUserPswConfirm = this.$md5(this.newUserPswConfirm)
+      this.pswRtoL = this.newUserPsw;
+      this.newUserPsw = this.$md5(this.newUserPsw);
+      this.newUserPswConfirm = this.$md5(this.newUserPswConfirm);
       const { newUserName, newUserPhone, newUserPsw, newUserPswConfirm } = this;
       let result = await reqRegister({
         newUserName,
         newUserPhone,
         newUserPsw,
-        newUserPswConfirm
+        newUserPswConfirm,
       });
       if (result.statu == 0) {
         MessageBox.confirm("注册成功，是否自动登录?").then(
-          action => {
+          (action) => {
             //点击确定按钮操作
             this.userPhone = this.newUserPhone;
             this.userPsw = this.pswRtoL;
@@ -219,7 +242,7 @@ export default {
       } else {
         Toast({
           message: result.msg,
-          duration: 1500
+          duration: 1500,
         });
       }
     },
@@ -244,91 +267,81 @@ export default {
       this.newUserPswConfirmState = "";
       this.showLogin = false;
       this.showRegister = true;
-    }
+    },
   },
   components: {
-    HeaderTop
-  }
+    HeaderTop,
+  },
 };
 </script>
 
-<style lang="stylus" type="text/stylus" rel="stylesheet/stylus" scoped>
-.login-container {
-  padding-top: 45px;
+<style scoped>
+.register {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: white;
+  left: 0;
+  top: 0;
+}
+.register-1 {
+  margin-top: 2rem;
+}
+.register-1 img {
+  width: 3rem;
+  display: block;
+  margin: 0.6rem auto;
+}
+.register-1 p {
+  color: black;
+  text-align: center;
+  font-size: 0.5rem;
+}
+.register-2 {
+  /* display: flex;
+  flex-direction: column; */
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.register-2 label {
+  width: 90%;
+  margin: auto;
+  height: 1.5rem;
+  border-bottom: 0.03rem solid #f2f2f2;
+  display: flex;
+}
+.register-2 label span {
+  width: 20%;
+  font-size: 0.5rem;
+  line-height: 1.5rem;
+  display: block;
+  float: left;
+}
 
-  >h3 {
-    padding: 20px;
-  }
-
-  .login-wrap {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-top 10%
-    .mint-field {
-      border-bottom: 1px solid #CDC9C9;
-      width: 70%;
-    }
-
-    .mint-button {
-      background-color: #fff;
-      margin-top: 15px;
-      margin-bottom: 15px;
-      color: #B22222;
-      border: 1px solid #B22222;
-      width: 70%;
-    }
-
-    .toggle-login {
-      margin-left: 26%;
-      color: #8B8989;
-    }
-  }
-
-  .register-wrap {
-    width: 90%;
-    margin: 0 auto;
-    padding-bottom: 80px;
-
-    .mint-button {
-      background-color: #4ab8a1;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-
-    .toggle-register {
-      display: flex;
-      justify-content: space-between;
-      color: #4ab8a1;
-    }
-  }
-
-  .find-psw-wrap {
-    width: 90%;
-    margin: 0 auto;
-    padding-bottom: 80px;
-
-    .get-captcha {
-      height: 30px;
-      background-color: #4ab8a1;
-      color: #fff;
-      border-radius: 2px;
-      border: 0;
-    }
-
-    .mint-button {
-      background-color: #4ab8a1;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-
-    .toggle-find-psw {
-      display: flex;
-      justify-content: space-between;
-      color: #4ab8a1;
-    }
-  }
+.register-2 label input {
+  width: 80%;
+  font-size: 0.4rem;
+  padding-left: 0.3rem;
+}
+.register-3 {
+  display: flex;
+}
+.btn {
+  width: 9rem;
+  height: 1.1rem;
+  margin: 0 auto;
+  /* margin-top: 0.72rem; */
+  margin-bottom: 0.3rem;
+  text-align: center;
+  line-height: 1.1rem;
+  font-size: 0.45rem;
+  color: #fff;
+  border-radius: 0.6rem;
+  background-color: #99ffcc;
+  background-image: linear-gradient(90deg, #90ee90, #99ffcc);
+}
+.login-tip{
+  font-size: 14px;
+  margin-left: 6%;
 }
 </style>

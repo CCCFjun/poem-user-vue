@@ -13,7 +13,7 @@
             <div class="user_info">
               <div class="user_img">
                 <img
-                  :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('@/common/imgs/profile.jpg')"
+                  :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('@/common/imgs/adminlogo.png')"
                   alt="用户头像"
                 />
               </div>

@@ -81,8 +81,7 @@
       <!--上一题和下一题按钮-->
       <div class="paper_button">
         <mt-button type="primary" @click.native="preItem" :disabled="currentIndex < 1">
-          {{currentIndex < 1 ? '无' :
-          '上一题'}}
+          {{currentIndex < 0 ? '无' : '上一题'}}
         </mt-button>
         <mt-button
           type="primary"

@@ -11,7 +11,7 @@
     <div class="profile_info_change_field">
       <div class="profile_img_div">
         <label for="fileInput">      
-          <img :src="userImgSrc ? userImgSrc : require('../../common/imgs/profile.jpg')" class="profile_img">       
+          <img :src="userImgSrc ? userImgSrc : require('../../common/imgs/adminlogo.png')" class="profile_img">       
         </label>
       </div>
       <input v-show="false" type="file" id="fileInput" class="img_file"

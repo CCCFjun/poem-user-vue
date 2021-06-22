@@ -7,8 +7,8 @@
     <section class="profile-number">
       <router-link :to="userInfo.userPhone ? '' : '/login'" class="profile-link">
         <div class="profile_image">
-          <img :src="userInfo.userImgSrc ? userInfo.userImgSrc : require('../../common/imgs/profile.jpg')" alt="用户头像">
-          <!--<img src="../../common/imgs/profile.jpg" alt="头像" v-else>-->
+          <img :src="userInfo.userImgSrc ? userInfo.userImgSrc : require('../../common/imgs/adminlogo.png')" alt="用户头像">
+          <!--<img src="../../common/imgs/adminlogo.png" alt="头像" v-else>-->
         </div>
 
         <div class="user-info">
@@ -57,6 +57,7 @@
   import ProfileItem from '../../components/ProfileItem/ProfileItem.vue'
   import { mapState, mapGetters } from 'vuex'
   import { MessageBox, Toast } from 'mint-ui';
+  import { Dialog } from 'vant';
   export default {
     name: "",
     data() {
@@ -78,7 +79,11 @@
         this.isSelect = !this.isSelect;
       },
       logout(){
-        MessageBox.confirm('确定退出登录吗?').then(action => {
+        Dialog.confirm({
+          title: '提示',
+          message: '确定退出登录吗',
+          theme: 'round-button',
+        }).then(() => {
           //点击确定按钮操作
           //清空sessionStorage会话
           sessionStorage.clear();
@@ -89,9 +94,9 @@
             duration: 1500
           });
           this.$router.push('/login')
-        },() => {
-          //点击取消按钮操作
-        })
+        }).catch(() => {
+          // on close
+        });
       },
       toDetail(path){
         if (!this.$store.state.userInfo.userPhone){

@@ -21,7 +21,7 @@
     <div class="my_score" v-if="currentPaperStatus == 1" @click="toExamAnswer(paperId)">
       <div class="user_info">
         <div class="user_img">
-          <img :src="userImgSrc ? userImgSrc : require('../../common/imgs/profile.jpg')" alt="用户头像" />
+          <img :src="userImgSrc ? userImgSrc : require('../../common/imgs/adminlogo.png')" alt="用户头像" />
         </div>
         <div class="name_time">
           <p class="user_name">{{userName}}</p>
@@ -36,7 +36,7 @@
       <div class="user_info" v-for="(item,index) in scoreListInfo" :key="index">
         <div class="user_img">
           <img
-            :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('../../common/imgs/profile.jpg')"
+            :src="item.userInfo[0].userImgSrc ? item.userInfo[0].userImgSrc : require('../../common/imgs/adminlogo.png')"
             alt="用户头像"
           />
         </div>

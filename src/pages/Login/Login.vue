@@ -1,22 +1,11 @@
 <template>
   <section class="register">
     <!--利用$router.back()返回上一级路由 -->
-    <!-- <HeaderTop title="登录">
-      <a
-        href="javascript:"
-        slot="left"
-        class="go_back"
-        @click="$router.goBack()"
-      >
-        <i class="iconfont iconxiazai6"></i>
-      </a>
-    </HeaderTop> -->
     <van-nav-bar
-  title="登录"
-  left-text=""
-  left-arrow
-  @click-left="$router.goBack()"
-/>
+      title="登录"
+      left-arrow
+      @click-left="$router.goBack()"
+    />
 
     <div class="register-1">
       <img src="../../common/imgs/adminlogo.png" alt />

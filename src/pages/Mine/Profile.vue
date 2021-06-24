@@ -124,7 +124,7 @@
   .profile
     width 100%
     padding-bottom 45px
-    background-color #EEE9E9
+    background-color #F7F8FA
     .profile-number
       margin-top 40px
       background-color #fff

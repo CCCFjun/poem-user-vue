@@ -1,11 +1,10 @@
 <template>
   <section class="user_notice">
-    <!--利用$router.back()返回上一级路由 -->
-    <HeaderTop title="通知">
-      <a href="javascript:" slot="left" class="go_back" @click="$router.goBack()">
-        <i class="iconfont iconxiazai6"></i>
-      </a>
-    </HeaderTop>
+    <van-nav-bar
+      title="通知"
+      left-arrow
+      @click-left="$router.goBack()"
+    />
 
     <div class="user_notice_detail" v-if="noticeList.length">
       <ul class="user_notice_detail_ul" v-for="(item, index) in noticeList" :key="index">
@@ -86,7 +85,6 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .user_notice {
-  padding-top: 40px;
   background-color: #f5f5f5;
   height 100%
   .no_user_notice_detail {
